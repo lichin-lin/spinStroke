@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/earlyaccess/notosanstc.css')
+@import url('https://fonts.googleapis.com/css?family=Open+Sans')
+$black = #50514F
+$blue = #D8EAF9
+$white = #F0F0F0
+$fb_color = #0AF//rgba(#3b5998, 0.8)
+$bg-color= #ff8888 //start color
+$stops= 100 //smoothness
+$time= 20s //duration of animation
+$hue-range= 20 //of 360deg
+
+*
+  font-family 'Noto Sans TC', sans-serif
+h1.not_login_logo
+  color $white !important
+  font-size: 2.5em !important
+body
+    margin 0px
+    background-color $blue
+    font-family 'Open Sans', sans-serif
+    #app
+      background-color $blue
+      color $black
+      h1
+        font-size 36px
+      .control-label
+        font-size 24px
+        font-weight 100
+      .form-control
+        height 50px
+        color $black
+        font-size 20px
+        background transparent
+        border-color darken($blue, 20%)
+        border-width 2px
+
+    .testFunction
+      button
+        padding 5px 10px
+        margin 0 10px
+        font-size 16px
+        background $blue
+        color $black
+        border 2px solid $black
+        border-radius 2.5px
+
+h1
+  color $black
+  font-weight 400
+  font-size 3em !important
+
+h2
+  color $black
+  font-weight 400
+  font-size 2.5em !important
+  position relative
+  padding-bottom 20px
+  &:after
+    content ""
+    width 50px
+    height 5px
+    background-color $black
+    border-radius 1px
+    position absolute
+    bottom 10px
+    left 0
+
+.sat_btn
+  color $black
+  font-size 1.25em
+  font-weight 400
+  border 2px solid rgba(80,80,80, 0.75)
+  border-radius 2.5px
+  padding 5px 10px
+  margin 0px 10px 0 0
+  cursor pointer
+  background transparent
+  &:hover
+    cursor pointer
+
+.fb_btn
+  border 2px solid $fb_color
+  color $fb_color
+.save_btn
+  border none
+  color: $white
+  font-size: 1em
+  font-weight: 400
+  span
+    color $fb_color
+.sweet-alert
+  h2
+    &:after
+      display: none
+  p
+    max-height: 320px
+    overflow: scroll
+.rule__container
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  p
+    max-width: 300px
+  img
+    margin: 20px 0
+.login__img
+  width: 200px;
+  height: auto;
+  max-width: 200px;

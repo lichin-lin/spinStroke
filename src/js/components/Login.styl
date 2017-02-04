@@ -1,0 +1,107 @@
+$black = #50514F
+$blue = #D8EAF9
+$white = #F0F0F0
+$fb_color = rgba(#3b5998, 0.8)
+$bg-color= #ff8888 //start color
+$stops= 100 //smoothness
+$time= 20s //duration of animation
+$hue-range= 20 //of 360deg
+// animation_bg()
+//   background: linear-gradient(230deg,#6a67ce, #6a67ce, #6a67ce, #fc636b, #ffb900, #53d769, #53d769, #53d769) //, #ffdd00
+//   background-size: 1000% 1000%
+//
+//   -webkit-animation: AnimationName 35s ease infinite;
+//   -moz-animation: AnimationName 35s ease infinite;
+//   animation: AnimationName 35s ease infinite;
+//
+//   @-webkit-keyframes AnimationName {
+//       0%{background-position:0% 2.5%}
+//       50%{background-position:100% 97.5%}
+//       100%{background-position:0% 2.5%}
+//   }
+//   @-moz-keyframes AnimationName {
+//       0%{background-position:0% 2.5%}
+//       50%{background-position:100% 97.5%}
+//       100%{background-position:0% 2.5%}
+//   }
+//   @keyframes AnimationName {
+//       0%{background-position:0% 2.5%}
+//       50%{background-position:100% 97.5%}
+//       100%{background-position:0% 2.5%}
+//   }
+.fb_btn
+  color $fb_color
+  border-color $fb_color
+
+.not_login
+  width 100vw
+  height 100vh
+  // animation_bg()
+  background $black
+  position absolute
+  top 0
+  left 0
+  z-index 9999
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  .not_login_title
+    text-align center
+    position absolute
+    bottom 10px
+    left 0px
+    width 100%
+    color $white !important
+    p
+      letter-spacing 2px
+      color $white !important
+  .not_login_section
+    max-width 480px
+    text-align center
+    position relative
+    p
+      color $white
+      font-size 1.5em
+
+
+.info_section
+  margin 20px 0
+  padding 0 20px
+  .info_content
+    letter-spacing 2px
+    font-size 1.5em
+    color $black
+    .web
+      margin-right 10px
+    .star
+      color rgba(#fcb314, 0.75)
+    a
+      color $black
+      position relative
+      text-decoration none
+      font-size 0.75em
+      cursor pointer
+      &:after
+        content ""
+        width 100%
+        height 5px
+        background-color rgba($fb_color, 0.35)
+        border-radius 1px
+        position absolute
+        bottom 0px
+        left 0
+
+#svg
+    height: 100px
+//   stroke none
+//   fill none
+//   display none
+
+.dropZone
+    width: 100px
+    height: 100px
+    border-width: 2px
+    border-color: rgb(102, 102, 102)
+    border-style: dashed
+    border-radius: 5px

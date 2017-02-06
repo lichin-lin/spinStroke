@@ -1,8 +1,12 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
+    symbols: [],
     colors: ['#9DF3C4', '#EA7362', '#74ceee', '#FFCA61'],
-    symbols: []
+    lineWidth: 2,
+    speed: 5,
+    during: 1.25,
+    transitionDuring: 0.75
 }
 
 export default handleActions({
@@ -60,6 +64,20 @@ export default handleActions({
             return {
                 ...state,
                 colors: []
+            }
+        },
+        throw (state, action) {
+            return {
+                ...state
+            }
+        }
+    },
+
+    SET_STROKEPROPS: {
+        next (state, action) {
+            return {
+                ...state,
+                ...action.payload
             }
         },
         throw (state, action) {

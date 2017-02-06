@@ -15,7 +15,7 @@ export default CSSModules(class Base extends Component {
         this.getColorSegment = this.getColorSegment.bind(this)
         // state
         this.state = {
-            colors: this.props.Stroke.colors,
+            ...props.Stroke,
             steps: 1000,
             offset: 0,
             symbolCounter: 0,
@@ -37,7 +37,7 @@ export default CSSModules(class Base extends Component {
         if (this.state.symbols.length === 0) {
             return
         }
-        let offset = this.state.offset + 5 / this.state.symbols[this.state.symbolCounter].length
+        let offset = this.state.offset + this.state.speed / this.state.symbols[this.state.symbolCounter].length
         offset = offset >= 1 ? 0 : offset
         this.state.offset = offset
         this.drawPathToCanvas()
@@ -49,11 +49,11 @@ export default CSSModules(class Base extends Component {
             return
         }
 
-        TweenLite.to(this.state.interpolationPoint, 0.75, {
+        TweenLite.to(this.state.interpolationPoint, this.state.transitionDuring, {
             percentage: 1,
             ease: Power2.easeInOut,
-            delay: 1.25,
-            onComplete: function (tt) {
+            delay: this.state.during,
+            onComplete: function () {
                 this.state.interpolationPoint.percentage = 0
                 if (this.state.symbols.length) {
                     this.state.symbolCounter = (this.state.symbolCounter + 1) % this.state.symbols.length
@@ -117,18 +117,23 @@ export default CSSModules(class Base extends Component {
 
     componentDidMount () {
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
-        ctx.lineWidth = 2
+        ctx.lineWidth = this.state.lineWidth
         ctx.lineCap = 'round'
         this.tweenPaths()
         this.loop()
         this.props.addSymbol('M104 22.5h11l75 177.5h-13.5l-24.8-58.5h-84.7l-24.8 58.5h-13.7z m44.3 108.5l-38.8-93-39.5 93h78.3z')
         setTimeout(() => {
             this.props.addSymbol('M179 154q0 9.8-3.8 18.1t-10.2 14.6-15.3 9.8-18.4 3.5h-83v-177.5h82.7q9.3 0 16.8 4t12.7 10.4 8.1 14.5 2.9 16.4q0 13.5-6.8 24.7t-18.7 16.5q15.3 4.5 24.1 16.9t8.9 28.1z m-12.8-1.8q0-7-2.4-13.6t-7-11.7-10.7-8.2-13.1-3h-72v72.8h70.3q7.5 0 13.8-3t11-8.1 7.4-11.7 2.8-13.5z m-105.2-118.2v71h65q7.3 0 13.3-3t10.3-7.9 6.9-11.3 2.5-13.3q0-7.3-2.4-13.6t-6.5-11.3-9.9-7.7-12.7-2.9h-66.5z')
+            this.props.setStrokeProps({lineWidth: 5})
+            this.props.setStrokeProps({during: 2})
+            this.props.setStrokeProps({transitionDuring: 1.5})
+            this.props.setStrokeProps({speed: 1})
         }, 1500)
     }
 
     componentWillReceiveProps (nextProps) {
         this.setState({
+            ...nextProps.Stroke,
             symbols: nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol)))
         }, () => {
             if (this.props.Stroke.symbols.length === 1) {
@@ -137,6 +142,8 @@ export default CSSModules(class Base extends Component {
                 this.loop()
             }
         })
+        let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
+        ctx.lineWidth = nextProps.Stroke.lineWidth
     }
 
     render () {

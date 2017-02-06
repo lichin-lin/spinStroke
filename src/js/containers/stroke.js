@@ -7,8 +7,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    addPath: (data) => dispatch(Action.Stroke.addPath(data)),
-    clearPath: (data) => dispatch(Action.Stroke.clearPath(data)),
+    addSymbol: (data) => dispatch(Action.Stroke.addSymbol(data)),
+    clearSymbol: (data) => dispatch(Action.Stroke.clearSymbol(data)),
     addColor: (data) => dispatch(Action.Stroke.addColor(data)),
     clearColor: (data) => dispatch(Action.Stroke.clearColor(data))
 })

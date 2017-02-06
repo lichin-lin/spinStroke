@@ -16,16 +16,13 @@ export default CSSModules(class Base extends Component {
         // state
         this.state = {
             colors: this.props.Stroke.colors,
-            pathPointsFrom: [],
-            pathPointsTo: [],
-            pathPointsNow: [],
             steps: 1000,
             offset: 0,
-            pathCount: 0,
+            symbolCounter: 0,
             interpolationPoint: {
                 percentage: 0
             },
-            paths: []
+            symbols: []
         }
     }
     distance (a, b) {
@@ -37,24 +34,20 @@ export default CSSModules(class Base extends Component {
     loop () {
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
         ctx.clearRect(0, 0, 2000, 2000)
-        if (this.state.paths.length === 0) {
+        if (this.state.symbols.length === 0) {
             return
         }
-        let offset = this.state.offset + 0.005
+        let offset = this.state.offset + 5 / this.state.symbols[this.state.symbolCounter].length
         offset = offset >= 1 ? 0 : offset
         this.state.offset = offset
-        this.state.pathPointsNow = this.interpolatePaths()
         this.drawPathToCanvas()
         requestAnimationFrame(this.loop)
     }
 
     tweenPaths () {
-        if (this.state.paths.length === 0) {
+        if (this.state.symbols.length === 0) {
             return
         }
-
-        this.state.pathPointsFrom = this.state.paths[this.state.pathCount % this.state.paths.length]
-        this.state.pathPointsTo = this.state.paths[(this.state.pathCount + 1) % this.state.paths.length]
 
         TweenLite.to(this.state.interpolationPoint, 0.75, {
             percentage: 1,
@@ -62,8 +55,8 @@ export default CSSModules(class Base extends Component {
             delay: 1.25,
             onComplete: function (tt) {
                 this.state.interpolationPoint.percentage = 0
-                if (this.state.paths.length) {
-                    this.state.pathCount = (this.state.pathCount + 1) % this.state.paths.length
+                if (this.state.symbols.length) {
+                    this.state.symbolCounter = (this.state.symbolCounter + 1) % this.state.symbols.length
                 }
                 this.tweenPaths()
             }.bind(this)
@@ -71,16 +64,17 @@ export default CSSModules(class Base extends Component {
     }
 
     drawPathToCanvas () {
+        let path = this.interpolatePaths()
         let thisColor = this.getColorSegment(0)
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
         ctx.strokeStyle = thisColor
         ctx.beginPath()
-        for (var i = 0; i < this.state.pathPointsNow.length - 1; i++) {
-            ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
-            if (i && this.distance(this.state.pathPointsNow[i], this.state.pathPointsNow[i + 1]) > 2 * this.distance(this.state.pathPointsNow[i], this.state.pathPointsNow[i - 1])) {
+        for (var i = 0; i < path.length - 1; i++) {
+            ctx.moveTo(path[i].x, path[i].y)
+            if (i && this.distance(path[i], path[i + 1]) > 2 * this.distance(path[i], path[i - 1])) {
                 continue
             }
-            ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
+            ctx.lineTo(path[i + 1].x, path[i + 1].y)
             thisColor = this.getColorSegment(i)
             if (thisColor !== ctx.strokeStyle) {
                 ctx.stroke()
@@ -99,13 +93,12 @@ export default CSSModules(class Base extends Component {
     }
 
     interpolatePaths () {
-        let points = []
-        for (let i = 0; i < this.state.steps; i++) {
-            points.push({
-                x: this.state.pathPointsFrom[i].x + (this.state.pathPointsTo[i].x - this.state.pathPointsFrom[i].x) * this.state.interpolationPoint.percentage,
-                y: this.state.pathPointsFrom[i].y + (this.state.pathPointsTo[i].y - this.state.pathPointsFrom[i].y) * this.state.interpolationPoint.percentage
-            })
-        }
+        let From = this.state.symbols[this.state.symbolCounter % this.state.symbols.length].path
+        let To = this.state.symbols[(this.state.symbolCounter + 1) % this.state.symbols.length].path
+        let points = [...Array(this.state.steps).keys()].map((i) => ({
+            x: (From[i].x + (To[i].x - From[i].x) * this.state.interpolationPoint.percentage),
+            y: (From[i].y + (To[i].y - From[i].y) * this.state.interpolationPoint.percentage)
+        }))
         return points
     }
 
@@ -114,12 +107,12 @@ export default CSSModules(class Base extends Component {
         let path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
         svg.appendChild(path)
         path.setAttribute('d', pathStroke)
-        let points = []
         let length = path.getTotalLength()
-        for (let i = 0; i < this.state.steps; i++) {
-            points.push(path.getPointAtLength(length * i / this.state.steps))
+        let points = [...Array(this.state.steps).keys()].map((i) => (path.getPointAtLength(length * i / this.state.steps)))
+        return {
+            length: length,
+            path: points
         }
-        return points
     }
 
     componentDidMount () {
@@ -128,21 +121,21 @@ export default CSSModules(class Base extends Component {
         ctx.lineCap = 'round'
         this.tweenPaths()
         this.loop()
-        this.props.addPath('M75.88 34.20L91.89 33.81L91.99 25.51L78.13 28.93L76.66 25.51L106.25 8.81L116.02 19.65L104.98 22.38L105.08 33.61L121.58 33.22L119.82 62.13L105.37 62.23L105.47 71.50L110.64 71.02L109.96 63.79L112.11 62.32L124.61 82.44L112.11 87.52L111.04 76.00L78.03 86.64L73.93 74.14L91.60 72.68L91.70 62.32L75.88 62.42L75.88 34.20M86.33 38.30L87.30 57.93L91.70 57.93L91.89 38.30L86.33 38.30M59.38 3.14L137.50 1.29L140.53 76.48L144.53 76.88L144.92 80.98L128.32 88.30L122.56 6.37L74.80 7.05L70.31 67.11L62.50 86.93L56.84 87.13L59.38 3.14M109.18 57.83L109.67 38.11L105.18 38.11L105.37 57.83L109.18 57.83L109.18 57.73L109.18 57.83Z')
+        this.props.addSymbol('M104 22.5h11l75 177.5h-13.5l-24.8-58.5h-84.7l-24.8 58.5h-13.7z m44.3 108.5l-38.8-93-39.5 93h78.3z')
         setTimeout(() => {
-            this.props.addPath('M62.70 6.66L62.60 2.36L139.16 1.19L139.36 5.39L105.37 5.98L102.05 15.64L134.47 14.86L133.01 52.85L96.48 53.54L93.75 57.93L116.80 57.34L130.08 64.28L124.90 71.70L141.80 74.63L135.35 88.79L116.50 79.90L99.51 87.91L98.14 85.27L106.35 75.12L96.29 70.33L96.29 66.82L109.77 69.16L113.28 61.74L90.92 62.42L81.84 76.97L61.52 87.03L59.18 84.69L69.53 71.02L77.73 53.83L68.16 54.02L66.60 16.62L89.16 16.04L89.75 6.17L62.70 6.66M117.48 19.65L81.93 20.43L82.23 27.27L117.48 26.00L117.48 19.65M83.20 49.34L117.29 48.55L117.29 41.43L82.91 42.60L83.20 49.34M82.71 38.20L117.38 36.93L117.38 30.39L82.42 31.66L82.71 38.20L82.71 38.11L82.71 38.20Z')
+            this.props.addSymbol('M179 154q0 9.8-3.8 18.1t-10.2 14.6-15.3 9.8-18.4 3.5h-83v-177.5h82.7q9.3 0 16.8 4t12.7 10.4 8.1 14.5 2.9 16.4q0 13.5-6.8 24.7t-18.7 16.5q15.3 4.5 24.1 16.9t8.9 28.1z m-12.8-1.8q0-7-2.4-13.6t-7-11.7-10.7-8.2-13.1-3h-72v72.8h70.3q7.5 0 13.8-3t11-8.1 7.4-11.7 2.8-13.5z m-105.2-118.2v71h65q7.3 0 13.3-3t10.3-7.9 6.9-11.3 2.5-13.3q0-7.3-2.4-13.6t-6.5-11.3-9.9-7.7-12.7-2.9h-66.5z')
         }, 1500)
-        setTimeout(() => {
-            // this.props.clearPath()
-        }, 3000)
     }
 
     componentWillReceiveProps (nextProps) {
         this.setState({
-            paths: nextProps.Stroke.paths.map((path) => (this.samplePath(path)))
+            symbols: nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol)))
         }, () => {
-            this.tweenPaths()
-            this.loop()
+            if (this.props.Stroke.symbols.length === 1) {
+                this.state.symbolCounter = 0
+                this.tweenPaths()
+                this.loop()
+            }
         })
     }
 

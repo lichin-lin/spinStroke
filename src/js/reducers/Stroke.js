@@ -2,17 +2,17 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
     colors: ['#9DF3C4', '#EA7362', '#74ceee', '#FFCA61'],
-    paths: []
+    symbols: []
 }
 
 export default handleActions({
 
-    ADD_PATH: {
+    ADD_SYMBOL: {
         next (state, action) {
             return {
                 ...state,
-                paths: [
-                    ...state.paths,
+                symbols: [
+                    ...state.symbols,
                     action.payload
                 ]
             }
@@ -24,11 +24,11 @@ export default handleActions({
         }
     },
 
-    CLEAR_PATH: {
+    CLEAR_SYMBOL: {
         next (state, action) {
             return {
                 ...state,
-                paths: []
+                symbols: []
             }
         },
         throw (state, action) {

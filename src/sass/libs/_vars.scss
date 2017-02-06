@@ -23,7 +23,9 @@
         family-fixed:		('Courier New', monospace),
         weight:				300,
         weight-bold:		400,
-        letter-spacing:		-0.025em
+        // letter-spacing:		0.025em
+        letter-spacing:     0,
+        word-spacing:       0.15em
     );
 
 // Palette.

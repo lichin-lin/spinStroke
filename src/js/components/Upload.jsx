@@ -16,10 +16,10 @@ export default CSSModules(class Base extends Component {
             } else {
                 // Use font here.
                 let fontObject = []
-                var HGlyths = font.stringToGlyphs('Hello')
+                var HGlyths = font.stringToGlyphs('風')
                 console.log('glyth: ', HGlyths)
                 for (let i = 0; i < HGlyths.length; i++) {
-                    let HPath = HGlyths[i].getPath(50, 50, 80)
+                    let HPath = HGlyths[i].getPath(50, 80, 100)
                     let HPathData = HPath.toPathData(2)
                     console.log('svg path: ', HPathData)
                     fontObject.push(HPath.toSVG(2))

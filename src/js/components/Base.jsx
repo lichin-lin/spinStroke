@@ -13,10 +13,10 @@ export default CSSModules(class Base extends Component {
                 <Containers.section.Header />
                 <nav id="nav">
                     <ul>
-                        <li><a href="#intro" className="active">Introduction</a></li>
-                        <li><a href="#first">First Section</a></li>
-                        <li><a href="#second">Second Section</a></li>
-                        <li><a href="#cta">Get Started</a></li>
+                        <li><a href="#Font" className="active">Upload Font</a></li>
+                        <li><a href="#Color">Pick Color</a></li>
+                        <li><a href="#Mode">Select Mode</a></li>
+                        <li><a href="#Playground">Playground</a></li>
                     </ul>
                 </nav>
                 <div id="main">

@@ -41,7 +41,6 @@ export default CSSModules(class Base extends Component {
             paths: []
         }
     }
-
     distance (a, b) {
         var x = a.x - b.x
         var y = a.y - b.y

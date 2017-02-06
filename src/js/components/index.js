@@ -2,7 +2,7 @@ import common from './common'
 import section from './section'
 import App from './App'
 import Base from './Base'
-import Login from './Login'
+import Upload from './Upload'
 import NotFound from './NotFound'
 import stroke from './stroke'
 export default {
@@ -10,7 +10,7 @@ export default {
     section,
     App,
     Base,
-    Login,
+    Upload,
     NotFound,
     stroke
 }

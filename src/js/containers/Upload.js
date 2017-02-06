@@ -10,4 +10,4 @@ const mapDispatchToProps = (dispatch) => ({
     CookieLogin: (data) => dispatch(Action.Session.CookieLogin(data))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Components.Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Components.Upload)

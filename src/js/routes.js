@@ -14,7 +14,7 @@ export default class Root extends Component {
                 <Route path="/" component={Containers.App} >
                     <IndexRoute component={Containers.Base} />
                 </Route>
-                <Route path="/login" component={Containers.Login} />
+                <Route path="/Upload" component={Containers.Upload} />
                 <Route path="/stroke" component={Containers.stroke} />
             </Router>
 

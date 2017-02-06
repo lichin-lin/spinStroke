@@ -3,7 +3,7 @@ import section from './section'
 import App from './App'
 import Base from './Base'
 import DevTools from './DevTools'
-import Login from './Login'
+import Upload from './Upload'
 import stroke from './stroke'
 export default {
     common,
@@ -11,6 +11,6 @@ export default {
     App,
     Base,
     DevTools,
-    Login,
+    Upload,
     stroke
 }

@@ -5,8 +5,6 @@ import CSSModules from 'react-css-modules'
 export default CSSModules(class Base extends Component {
     constructor (props) {
         super(props)
-        this.checkState = this.checkState.bind(this)
-        this.changeCtx = this.changeCtx.bind(this)
         this.changeTheme = this.changeTheme.bind(this)
         // animation
         this.tweenPaths = this.tweenPaths.bind(this)
@@ -28,7 +26,6 @@ export default CSSModules(class Base extends Component {
             },
             colors: [],
             colorCount: 4,
-            wordCount: 2,
             pathPointsFrom: [],
             pathPointsTo: [],
             pathPointsNow: [],
@@ -45,31 +42,25 @@ export default CSSModules(class Base extends Component {
         }
     }
 
+    distance (a, b) {
+        var x = a.x - b.x
+        var y = a.y - b.y
+        return Math.sqrt(x * x + y * y)
+    }
+
     loop () {
         let ctx = document.getElementById('spincanvas').getContext('2d')
-        this.setState({
-            ctx: {
-                fillRect: ctx.clearRect(0, 0, 2000, 2000),
-                ...this.state.ctx
-            }
-        })
-        this.setState({offset: this.state.offset + 0.005})
+        ctx.clearRect(0, 0, 2000, 2000)
+        let offset = this.state.offset + 0.005
+        offset = offset >= 1 ? 0 : offset
+        this.setState({offset: offset})
         this.setState({pathPointsNow: this.interpolatePaths()})
-        if (this.state.offset >= 1) this.setState({offset: 0})
         this.drawPathToCanvas()
         requestAnimationFrame(this.loop)
     }
     tweenPaths () {
-        // console.log('yoyoyoyo', this.state.paths[this.state.pathCount])
         this.setState({pathPointsFrom: this.state.paths[this.state.pathCount]})
-        // this.state.pathPointsFrom = this.state.paths[this.state.pathCount]
-        if (this.state.pathCount + 1 <= this.state.wordCount) {
-            this.setState({pathPointsTo: this.state.paths[this.state.pathCount + 1]})
-            // this.state.pathPointsTo = this.state.paths[this.state.pathCount + 1]
-        } else {
-            this.setState({pathPointsTo: this.state.paths[0]})
-            // this.state.pathPointsTo = this.state.paths[0]
-        }
+        this.setState({pathPointsTo: this.state.paths[(this.state.pathCount + 1) % this.state.paths.length]})
 
         TweenLite.to(this.state.interpolationPoint, 0.75, {
             percentage: 1,
@@ -79,63 +70,30 @@ export default CSSModules(class Base extends Component {
                 let inter = this.state.interpolationPoint
                 inter.percentage = 0
                 this.setState({interpolationPoint: inter})
-                this.setState({pathCount: this.state.pathCount + 1})
-                if (this.state.pathCount > this.state.wordCount) {
-                    this.setState({pathCount: 0})
-                }
-                // console.log('here', this.state)
+                this.setState({pathCount: (this.state.pathCount + 1) % this.state.paths.length})
                 this.tweenPaths()
             }.bind(this)
         })
     }
     drawPathToCanvas () {
         let thisColor = this.getColorSegment(0)
-        let lastColor = this.getColorSegment(0)
-        this.setState({
-            ctx: {
-                strokeStyle: lastColor,
-                ...this.state.ctx
-            }
-        })
         let ctx = document.getElementById('spincanvas').getContext('2d')
-        ctx.strokeStyle = lastColor
+        ctx.strokeStyle = thisColor
         ctx.beginPath()
-        // this.state.ctx.beginPath()
-        for (var i = 0, l = this.state.pathPointsNow.length; i < l; i++) {
-            if (this.state.pathPointsNow[i + 1]) {
-                ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
-                // this.state.ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
-                ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
-                // this.state.ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
-            } else {
-                ctx.lineTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
-                // this.state.ctx.lineTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+        for (var i = 0; i < this.state.pathPointsNow.length - 1; i++) {
+            ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+            if (i && this.distance(this.state.pathPointsNow[i], this.state.pathPointsNow[i + 1]) > 2 * this.distance(this.state.pathPointsNow[i], this.state.pathPointsNow[i - 1])) {
+                continue
             }
+            ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
             thisColor = this.getColorSegment(i)
-            if (thisColor) {
-                if (thisColor !== lastColor) {
-                    // this.state.ctx.closePath()
-                    // this.state.ctx.stroke()
-                    // this.state.ctx.beginPath()
-                    ctx.closePath()
-                    ctx.stroke()
-                    ctx.beginPath()
-                    // this.state.ctx.strokeStyle = thisColor
-                    ctx.strokeStyle = thisColor
-                    this.setState({
-                        ctx: {
-                            strokeStyle: thisColor,
-                            ...this.state.ctx
-                        }
-                    })
-                    lastColor = thisColor
-                }
+            if (thisColor !== ctx.strokeStyle) {
+                ctx.stroke()
+                ctx.beginPath()
+                ctx.strokeStyle = thisColor
             }
         }
-        ctx.closePath()
         ctx.stroke()
-        // this.state.ctx.closePath()
-        // this.state.ctx.stroke()
     }
     getColorSegment (i) {
         let p = (i / this.state.steps) + this.state.offset
@@ -145,7 +103,7 @@ export default CSSModules(class Base extends Component {
     }
     interpolatePaths () {
         let points = []
-        for (let i = 0; i <= this.state.steps; i++) {
+        for (let i = 0; i < this.state.steps; i++) {
             points.push({
                 x: this.state.pathPointsFrom[i].x + (this.state.pathPointsTo[i].x - this.state.pathPointsFrom[i].x) * this.state.interpolationPoint.percentage,
                 y: this.state.pathPointsFrom[i].y + (this.state.pathPointsTo[i].y - this.state.pathPointsFrom[i].y) * this.state.interpolationPoint.percentage
@@ -157,72 +115,48 @@ export default CSSModules(class Base extends Component {
         let path = document.getElementById(pathSelector)
         let length = path.getTotalLength()
         let points = []
-        for (let i = 0; i <= this.state.steps; i++) {
+        for (let i = 0; i < this.state.steps; i++) {
             points.push(path.getPointAtLength(length * i / this.state.steps))
         }
         return points
     }
-    checkState () {
-        this.setState({ ctx: this.state.canvas.getContext('2d') })
-        console.log(this.state)
-    }
-    changeCtx () {
-        let ctx = this.state.ctx
-        ctx.lineWidth = 4
-        ctx.lineCap = 'round'
-        this.setState({ctx: ctx})
-        console.log(this.state)
-
-        // start animation here
-        this.tweenPaths()
-        this.loop()
-    }
     putInPath () {
         let p = this.state.paths
-        p.push(this.samplePath('circle_path'))
-        p.push(this.samplePath('rect_path'))
-        p.push(this.samplePath('triangle_path'))
+        p.push(this.samplePath('D'))
+        p.push(this.samplePath('R'))
         this.setState({paths: p})
     }
     changeTheme (e) {
-        console.log(e.target.id)
         let target = e.target.id
         this.setState({ colors: this.state.colorList[target] })
-        console.log(this.state.colors)
     }
 
-    componentWillMount () {
-        // yo
-    }
     componentDidMount () {
-        // this.setState({ canvas: document.getElementById('spincanvas') })
-        this.setState({ ctx: document.getElementById('spincanvas').getContext('2d') })
-        this.setState({ colors: this.state.colorList.colors_init })
-        let points = []
-        for (let i = 0; i <= this.state.steps; i++) {
-            points.push({
-                x: 0,
-                y: 0
+        new Promise((resolve, reject) => {
+            let ctx = document.getElementById('spincanvas').getContext('2d')
+            ctx.lineWidth = 4
+            ctx.lineCap = 'round'
+            this.setState({ ctx: ctx }, () => {
+                resolve()
             })
-        }
-        this.setState({ pathPointsFrom: points })
-        this.setState({ pathPointsNow: points })
-        this.setState({ pathPointsTo: points })
-        this.setState({ pathPointsFuck: points })
-
-        this.putInPath()
+        }).then(() => {
+            this.setState({ colors: this.state.colorList.colors_init })
+        }).then(() => {
+            this.putInPath()
+        }).then(() => {
+            this.tweenPaths()
+            this.loop()
+        })
     }
     render () {
         return (
             <div className="strokeContainer">
-                {/* <div className="checkState" onClick={this.checkState}>get canvas</div> */}
-                <div className="checkState" onClick={this.changeCtx}>change ctx</div>
-                {/* <div className="checkState" onClick={this.putInPath}>put path to ctx</div> */}
-
                 <svg id="spinSVG" width="300" height="250" viewbox="0 0 300 250">
                     <path id="circle_path" d="M10,100a90,90 0 1,0 180,0a90,90 0 1,0 -180,0"></path>
                     <path id="rect_path" d="M90,10 110,10 110,190 90,190 90,10"></path>
                     <path id="triangle_path" d="M100,40 170,160 30,160 100,40"></path>
+                    <path id="D" d="M48.3 200v-177.5h59q21 0 36.8 7t26.4 19 15.8 28.1 5.2 34.4q0 20.3-5.9 36.6t-16.8 28-26.7 18-34.8 6.4h-59z m130.4-89q0-16.8-4.7-30.9t-13.9-24.4-22.4-16-30.5-5.7h-46.2v154.5h46.2q17.5 0 30.9-5.9t22.4-16.4 13.6-24.6 4.6-30.6z"></path>
+                    <path id="R" d="M48.3 200v-177.5h73.7q11.3 0 20.8 4.8t16.3 12.6 10.8 17.7 3.8 19.9q0 9.8-3 18.9t-8.5 16.4-13.2 12-17 6.2l44.3 69h-14.8l-43-67h-57.5v67h-12.8z m12.7-78.8h62.3q8.5 0 15.5-3.7t12-9.9 7.6-14 2.6-16.1q0-8.5-3.1-16.4t-8.5-13.9-12.5-9.6-15.4-3.6h-60.5v87.3z"></path>
                 </svg>
                 <canvas id="spincanvas" width="300" height="250"></canvas>
                 <div id="color_list">

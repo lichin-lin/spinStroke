@@ -10,6 +10,12 @@ const combinePayload = (res: Promise, payload?: { [key: string]: any }) => {
     )
 }
 
+export function PromiseWrapper (x) {
+    return new Promise((resolve, reject) => {
+        resolve(x)
+    })
+}
+
 export default (url: string, options?: { [key: string]: any }={}) => {
     const URL = url
     let body = {}

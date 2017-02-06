@@ -45,12 +45,13 @@ export default CSSModules(class Base extends Component {
     }
 
     loop () {
-        // this.setState({
-        //     ctx: {
-        //         fillRect: this.state.ctx.clearRect(0, 0, 2000, 2000),
-        //         ...this.state.ctx
-        //     }
-        // })
+        let ctx = document.getElementById('spincanvas').getContext('2d')
+        this.setState({
+            ctx: {
+                fillRect: ctx.clearRect(0, 0, 2000, 2000),
+                ...this.state.ctx
+            }
+        })
         this.setState({offset: this.state.offset + 0.005})
         this.setState({pathPointsNow: this.interpolatePaths()})
         if (this.state.offset >= 1) this.setState({offset: 0})
@@ -94,27 +95,45 @@ export default CSSModules(class Base extends Component {
                 ...this.state.ctx
             }
         })
-        this.state.ctx.beginPath()
+        let ctx = document.getElementById('spincanvas').getContext('2d')
+        ctx.strokeStyle = lastColor
+        ctx.beginPath()
+        // this.state.ctx.beginPath()
         for (var i = 0, l = this.state.pathPointsNow.length; i < l; i++) {
             if (this.state.pathPointsNow[i + 1]) {
-                this.state.ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
-                this.state.ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
+                ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+                // this.state.ctx.moveTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+                ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
+                // this.state.ctx.lineTo(this.state.pathPointsNow[i + 1].x, this.state.pathPointsNow[i + 1].y)
             } else {
-                this.state.ctx.lineTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+                ctx.lineTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
+                // this.state.ctx.lineTo(this.state.pathPointsNow[i].x, this.state.pathPointsNow[i].y)
             }
             thisColor = this.getColorSegment(i)
             if (thisColor) {
                 if (thisColor !== lastColor) {
-                    this.state.ctx.closePath()
-                    this.state.ctx.stroke()
-                    this.state.ctx.beginPath()
-                    this.state.ctx.strokeStyle = thisColor
+                    // this.state.ctx.closePath()
+                    // this.state.ctx.stroke()
+                    // this.state.ctx.beginPath()
+                    ctx.closePath()
+                    ctx.stroke()
+                    ctx.beginPath()
+                    // this.state.ctx.strokeStyle = thisColor
+                    ctx.strokeStyle = thisColor
+                    this.setState({
+                        ctx: {
+                            strokeStyle: thisColor,
+                            ...this.state.ctx
+                        }
+                    })
                     lastColor = thisColor
                 }
             }
         }
-        this.state.ctx.closePath()
-        this.state.ctx.stroke()
+        ctx.closePath()
+        ctx.stroke()
+        // this.state.ctx.closePath()
+        // this.state.ctx.stroke()
     }
     getColorSegment (i) {
         let p = (i / this.state.steps) + this.state.offset
@@ -123,7 +142,6 @@ export default CSSModules(class Base extends Component {
         return this.state.colors[point]
     }
     interpolatePaths () {
-        // console.log('intre', this.state)
         let points = []
         for (let i = 0; i <= this.state.steps; i++) {
             points.push({
@@ -131,7 +149,6 @@ export default CSSModules(class Base extends Component {
                 y: this.state.pathPointsFrom[i].y + (this.state.pathPointsTo[i].y - this.state.pathPointsFrom[i].y) * this.state.interpolationPoint.percentage
             })
         }
-        // console.log('push to now', points)
         return points
     }
     samplePath (pathSelector) {
@@ -164,7 +181,6 @@ export default CSSModules(class Base extends Component {
         p.push(this.samplePath('rect_path'))
         p.push(this.samplePath('triangle_path'))
         this.setState({paths: p})
-        console.log(this.state)
     }
     changeTheme (e) {
         console.log(e.target.id)
@@ -177,11 +193,9 @@ export default CSSModules(class Base extends Component {
         // yo
     }
     componentDidMount () {
-        this.setState({ canvas: document.getElementById('spincanvas') })
-        // this.setState({ ctx: this.state.canvas.getContext('2d') })
-        // this.setState({ canvas: document.getElementById('spincanvas').getContext('2d') })
+        // this.setState({ canvas: document.getElementById('spincanvas') })
+        this.setState({ ctx: document.getElementById('spincanvas').getContext('2d') })
         this.setState({ colors: this.state.colorList.colors_init })
-
         let points = []
         for (let i = 0; i <= this.state.steps; i++) {
             points.push({
@@ -193,14 +207,13 @@ export default CSSModules(class Base extends Component {
         this.setState({ pathPointsNow: points })
         this.setState({ pathPointsTo: points })
         this.putInPath()
-        console.log(this.state)
     }
     render () {
         return (
             <div className="strokeContainer">
-                <div className="checkState" onClick={this.checkState}>get canvas</div>
+                {/* <div className="checkState" onClick={this.checkState}>get canvas</div> */}
                 <div className="checkState" onClick={this.changeCtx}>change ctx</div>
-                <div className="checkState" onClick={this.putInPath}>put path to ctx</div>
+                {/* <div className="checkState" onClick={this.putInPath}>put path to ctx</div> */}
 
                 <svg id="spinSVG" width="300" height="250" viewbox="0 0 300 250">
                     <path id="circle_path" d="M10,100a90,90 0 1,0 180,0a90,90 0 1,0 -180,0"></path>

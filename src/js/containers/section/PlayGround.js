@@ -8,4 +8,4 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Components.PlayGround)
+export default connect(mapStateToProps, mapDispatchToProps)(Components.section.PlayGround)

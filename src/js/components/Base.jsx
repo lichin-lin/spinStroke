@@ -19,9 +19,13 @@ export default CSSModules(class Base extends Component {
                         <li><a href="#cta">Get Started</a></li>
                     </ul>
                 </nav>
-                <div id="main"></div>
-                <footer id="footer">
-                </footer>
+                <div id="main">
+                    <Containers.section.FontSection />
+                    <Containers.section.ColorSection />
+                    <Containers.section.ModeSection />
+                    <Containers.section.PlayGround />
+                </div>
+                <Containers.section.FooterSection />
             </div>
         )
     }

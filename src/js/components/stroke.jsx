@@ -28,10 +28,11 @@ export default CSSModules(class Base extends Component {
             },
             colors: [],
             colorCount: 4,
-            wordCount: 0,
+            wordCount: 2,
             pathPointsFrom: [],
             pathPointsTo: [],
             pathPointsNow: [],
+            pathPointsFuck: [],
             steps: 1000,
             offset: 0,
             pathCount: 0,
@@ -59,6 +60,7 @@ export default CSSModules(class Base extends Component {
         requestAnimationFrame(this.loop)
     }
     tweenPaths () {
+        // console.log('yoyoyoyo', this.state.paths[this.state.pathCount])
         this.setState({pathPointsFrom: this.state.paths[this.state.pathCount]})
         // this.state.pathPointsFrom = this.state.paths[this.state.pathCount]
         if (this.state.pathCount + 1 <= this.state.wordCount) {
@@ -206,6 +208,8 @@ export default CSSModules(class Base extends Component {
         this.setState({ pathPointsFrom: points })
         this.setState({ pathPointsNow: points })
         this.setState({ pathPointsTo: points })
+        this.setState({ pathPointsFuck: points })
+
         this.putInPath()
     }
     render () {

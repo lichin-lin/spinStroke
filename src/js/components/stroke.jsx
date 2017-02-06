@@ -13,7 +13,6 @@ export default CSSModules(class Base extends Component {
         this.samplePath = this.samplePath.bind(this)
         this.drawPathToCanvas = this.drawPathToCanvas.bind(this)
         this.getColorSegment = this.getColorSegment.bind(this)
-        console.log(this.props)
         // state
         this.state = {
             colors: this.props.Stroke.colors,
@@ -148,7 +147,6 @@ export default CSSModules(class Base extends Component {
     }
 
     render () {
-        console.log('render', this.state)
         return (
             <div className="strokeContainer">
                 <canvas id="spincanvas" ref="spinCanvas" width="300" height="250"></canvas>

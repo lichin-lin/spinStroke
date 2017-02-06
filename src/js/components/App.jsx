@@ -13,4 +13,4 @@ export default CSSModules(class extends Component {
             </div>
         )
     }
-}, require('./sass/main.scss'))
+}, require('./../../sass/main.scss'))

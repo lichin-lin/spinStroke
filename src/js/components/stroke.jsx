@@ -29,9 +29,9 @@ export default CSSModules(class Base extends Component {
             colors: [],
             colorCount: 4,
             wordCount: 0,
-            pathPointsFrom: '',
-            pathPointsTo: '',
-            pathPointsNow: '',
+            pathPointsFrom: [],
+            pathPointsTo: [],
+            pathPointsNow: [],
             steps: 1000,
             offset: 0,
             pathCount: 0,
@@ -45,7 +45,12 @@ export default CSSModules(class Base extends Component {
     }
 
     loop () {
-        this.state.ctx.clearRect(0, 0, 2000, 2000)
+        // this.setState({
+        //     ctx: {
+        //         fillRect: this.state.ctx.clearRect(0, 0, 2000, 2000),
+        //         ...this.state.ctx
+        //     }
+        // })
         this.setState({offset: this.state.offset + 0.005})
         this.setState({pathPointsNow: this.interpolatePaths()})
         if (this.state.offset >= 1) this.setState({offset: 0})
@@ -53,35 +58,42 @@ export default CSSModules(class Base extends Component {
         requestAnimationFrame(this.loop)
     }
     tweenPaths () {
-        this.state.pathPointsFrom = this.state.paths[this.state.pathCount]
-        if (this.state.pathCount + 1 <= this.state.wordCount) this.state.pathPointsTo = this.state.paths[this.state.pathCount + 1]
-        else this.state.pathPointsTo = this.state.paths[0]
+        this.setState({pathPointsFrom: this.state.paths[this.state.pathCount]})
+        // this.state.pathPointsFrom = this.state.paths[this.state.pathCount]
+        if (this.state.pathCount + 1 <= this.state.wordCount) {
+            this.setState({pathPointsTo: this.state.paths[this.state.pathCount + 1]})
+            // this.state.pathPointsTo = this.state.paths[this.state.pathCount + 1]
+        } else {
+            this.setState({pathPointsTo: this.state.paths[0]})
+            // this.state.pathPointsTo = this.state.paths[0]
+        }
 
-        const tt = this.state
-        console.log('init', tt)
         TweenLite.to(this.state.interpolationPoint, 0.75, {
             percentage: 1,
             ease: Power2.easeInOut,
             delay: 1.25,
             onComplete: function (tt) {
-                // console.log('after', tt)
-                // let inter = this.state.interpolationPoint
-                // inter.percentage = 0
-                // this.setState({interpolationPoint: inter})
-                // this.state.pathCount = this.state.pathCount + 1
-                // this.setState({pathCount: this.state.pathCount + 1})
-                // if (this.state.pathCount > this.state.wordCount) {
-                    // this.setState({pathCount: 0})
-                    // this.state.pathCount = 0
-                // }
-                // this.tweenPaths()
-            }
+                let inter = this.state.interpolationPoint
+                inter.percentage = 0
+                this.setState({interpolationPoint: inter})
+                this.setState({pathCount: this.state.pathCount + 1})
+                if (this.state.pathCount > this.state.wordCount) {
+                    this.setState({pathCount: 0})
+                }
+                // console.log('here', this.state)
+                this.tweenPaths()
+            }.bind(this)
         })
     }
     drawPathToCanvas () {
         let thisColor = this.getColorSegment(0)
         let lastColor = this.getColorSegment(0)
-        this.state.ctx.strokeStyle = lastColor
+        this.setState({
+            ctx: {
+                strokeStyle: lastColor,
+                ...this.state.ctx
+            }
+        })
         this.state.ctx.beginPath()
         for (var i = 0, l = this.state.pathPointsNow.length; i < l; i++) {
             if (this.state.pathPointsNow[i + 1]) {
@@ -111,6 +123,7 @@ export default CSSModules(class Base extends Component {
         return this.state.colors[point]
     }
     interpolatePaths () {
+        // console.log('intre', this.state)
         let points = []
         for (let i = 0; i <= this.state.steps; i++) {
             points.push({
@@ -118,6 +131,7 @@ export default CSSModules(class Base extends Component {
                 y: this.state.pathPointsFrom[i].y + (this.state.pathPointsTo[i].y - this.state.pathPointsFrom[i].y) * this.state.interpolationPoint.percentage
             })
         }
+        // console.log('push to now', points)
         return points
     }
     samplePath (pathSelector) {
@@ -134,10 +148,10 @@ export default CSSModules(class Base extends Component {
         console.log(this.state)
     }
     changeCtx () {
-        let abc = this.state.ctx
-        abc.lineWidth = 4
-        abc.lineCap = 'round'
-        this.setState({ctx: abc})
+        let ctx = this.state.ctx
+        ctx.lineWidth = 4
+        ctx.lineCap = 'round'
+        this.setState({ctx: ctx})
         console.log(this.state)
 
         // start animation here
@@ -158,12 +172,27 @@ export default CSSModules(class Base extends Component {
         this.setState({ colors: this.state.colorList[target] })
         console.log(this.state.colors)
     }
+
     componentWillMount () {
-        // alert('Will!')
+        // yo
     }
     componentDidMount () {
         this.setState({ canvas: document.getElementById('spincanvas') })
+        // this.setState({ ctx: this.state.canvas.getContext('2d') })
+        // this.setState({ canvas: document.getElementById('spincanvas').getContext('2d') })
         this.setState({ colors: this.state.colorList.colors_init })
+
+        let points = []
+        for (let i = 0; i <= this.state.steps; i++) {
+            points.push({
+                x: 0,
+                y: 0
+            })
+        }
+        this.setState({ pathPointsFrom: points })
+        this.setState({ pathPointsNow: points })
+        this.setState({ pathPointsTo: points })
+        this.putInPath()
         console.log(this.state)
     }
     render () {

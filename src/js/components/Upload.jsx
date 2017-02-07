@@ -5,7 +5,10 @@ import * as d3 from 'd3'
 import CSSModules from 'react-css-modules'
 
 export default CSSModules(class Base extends Component {
-    static propTypes = {
+    constructor (props) {
+        super(props)
+        // function
+        this.onDrop = this.onDrop.bind(this)
     }
     onDrop (acceptedFiles, rejectedFiles) {
         console.log('Accepted files: ', acceptedFiles[0])
@@ -15,6 +18,7 @@ export default CSSModules(class Base extends Component {
                 console.log('Could not load font: ' + err)
             } else {
                 // Use font here.
+                this.props.uploadFile(font)
                 let fontObject = []
                 var HGlyths = font.stringToGlyphs('風')
                 console.log('glyth: ', HGlyths)

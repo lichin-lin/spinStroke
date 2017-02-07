@@ -6,23 +6,13 @@ export default class ColorSection extends Component {
         // function
         this.toggleColorList = this.toggleColorList.bind(this)
         this.toggleSampleColorList = this.toggleSampleColorList.bind(this)
-        // state
-        this.state = {
-            ...props.Stroke
-        }
     }
-    toggleColorList () {
+    toggleColorList (e) {
+        e.preventDefault()
         this.props.addColor('pink')
     }
-    toggleSampleColorList () {
+    toggleSampleColorList (e) {
         console.log('list~')
-    }
-    componentWillReceiveProps (nextProps) {
-        this.setState({
-            ...nextProps.Stroke
-        }, () => {
-            // ?
-        })
     }
     render () {
         return (
@@ -34,8 +24,8 @@ export default class ColorSection extends Component {
                 </header>
                 <footer className="major">
                     <ul className="actions">
-                        <li onClick={this.toggleColorList}><a href="#" className="button special">Add Colors</a></li>
-                        <li onClick={this.toggleSampleColorList}><a href="#" className="button">Choose Color Themes</a></li>
+                        <li onClick={this.toggleColorList}><a href="" className="button special">Add Colors</a></li>
+                        <li onClick={this.toggleSampleColorList}><a href="" className="button">Choose Color Themes</a></li>
                     </ul>
                 </footer>
             </section>

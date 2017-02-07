@@ -39,7 +39,7 @@ export default CSSModules(class ColorSection extends Component {
     }
     render () {
         return (
-            <section id="Font" className="main special">
+            <section id="Color" className="main special">
                 <header className="major">
                     <h2>Step2. Pick Colors</h2>
                     <p>Pick any colors from the list<br />

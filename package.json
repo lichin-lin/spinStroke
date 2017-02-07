@@ -17,6 +17,7 @@
     "js-sorting": "^3.0.4",
     "opentype.js": "^0.6.9",
     "query-string": "^4.2.3",
+    "radium": "^0.18.1",
     "react": "^15.4.1",
     "react-chartjs": "^0.8.0",
     "react-chartjs-2": "^1.5.1",

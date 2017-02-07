@@ -8,7 +8,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     addColor: (data) => dispatch(Action.Stroke.addColor(data)),
-    clearColor: (data) => dispatch(Action.Stroke.clearColor(data))
+    clearColor: (data) => dispatch(Action.Stroke.clearColor(data)),
+    setStrokeProps: (data) => dispatch(Action.Stroke.setProps(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Components.section.ColorSection)

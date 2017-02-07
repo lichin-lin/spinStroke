@@ -1,19 +1,26 @@
 import React, { Component } from 'react'
+import CSSModules from 'react-css-modules'
 import { SketchPicker } from 'react-color'
 
-export default class ColorSection extends Component {
+export default CSSModules(class ColorSection extends Component {
     constructor (props) {
         super(props)
         // function
         this.toggleColorList = this.toggleColorList.bind(this)
         this.toggleSampleColorList = this.toggleSampleColorList.bind(this)
+        this.handleChangeComplete = this.handleChangeComplete.bind(this)
+        this.state = {
+            color: 'white'
+        }
     }
-    toggleColorList (e) {
-        e.preventDefault()
-        this.props.addColor('pink')
+    toggleColorList () {
+        this.props.addColor(this.state.color)
     }
-    toggleSampleColorList (e) {
+    toggleSampleColorList () {
         console.log('list~')
+    }
+    handleChangeComplete = (color) => {
+        this.setState({ color: color.hex })
     }
     render () {
         return (
@@ -25,7 +32,10 @@ export default class ColorSection extends Component {
                 </header>
                 <footer className="major">
                     <ul className="actions">
-                        <SketchPicker />
+                        <SketchPicker
+                            color={ this.state.color }
+                            onChangeComplete={ this.handleChangeComplete }
+                        />
                     </ul>
                     <ul className="actions">
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
@@ -35,4 +45,4 @@ export default class ColorSection extends Component {
             </section>
         )
     }
-}
+}, require('./../../../sass/layout/section/colorSection.scss'))

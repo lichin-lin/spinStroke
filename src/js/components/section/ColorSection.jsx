@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import CSSModules from 'react-css-modules'
 import Radium from 'radium'
 import { SketchPicker } from 'react-color'
-
+import tinycolor from 'tinycolor2'
 @Radium
 export default CSSModules(class ColorSection extends Component {
     constructor (props) {
@@ -12,6 +12,7 @@ export default CSSModules(class ColorSection extends Component {
         this.toggleSampleColorList = this.toggleSampleColorList.bind(this)
         this.handleChangeComplete = this.handleChangeComplete.bind(this)
         this.cancelColor = this.cancelColor.bind(this)
+        this.colorBoxTextSetting = this.colorBoxTextSetting.bind(this)
         this.state = {
             color: 'white'
         }
@@ -20,17 +21,21 @@ export default CSSModules(class ColorSection extends Component {
         this.props.addColor(this.state.color)
     }
     toggleSampleColorList () {
-        console.log('list~')
     }
     handleChangeComplete = (color) => {
         this.setState({ color: color.hex })
     }
     cancelColor (id) {
-        console.log(id)
         let colorList = this.props.Stroke.colors
         if (id > -1) colorList.splice(id, 1)
-        console.log(colorList)
         this.props.setStrokeProps({colors: colorList})
+    }
+    colorBoxTextSetting () {
+        // check if color box`s bg is dark.
+        console.log(tinycolor(this.state.color).isDark())
+        if (tinycolor(this.state.color).isDark()) {
+            //
+        }
     }
     render () {
         return (
@@ -49,9 +54,9 @@ export default CSSModules(class ColorSection extends Component {
                     </ul>
                     <ul className="actions">
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
-                        <li onClick={this.toggleSampleColorList}><a className="button">Choose Color Themes</a></li>
+                        <li onClick={this.colorBoxTextSetting}><a className="button">Choose Color Themes</a></li>
                     </ul>
-                    <ul className="actions">
+                    <ul className="actions colorListContain">
                         <div className="colorList">
                             {
                                 this.props.Stroke.colors.map((ele, id) => (
@@ -61,13 +66,19 @@ export default CSSModules(class ColorSection extends Component {
                                                     background: ele
                                                 }}
                                             >
-                                                {ele}
+                                                <p>{ele}</p>
                                             </div>
                                         </li>
                                     )
                                 )
                             }
-                    </div>
+                        </div>
+                        <div style={{
+                            fontStyle: 'italic',
+                            wordSpacing: '2px'
+                        }}>
+                            * click on the colorbox to remove the color.
+                        </div>
                     </ul>
                 </footer>
             </section>

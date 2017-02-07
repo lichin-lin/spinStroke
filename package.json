@@ -40,6 +40,7 @@
     "sorted-array": "^2.0.1",
     "sw-precache": "^4.2.3",
     "sweetalert-react": "^0.4.6",
+    "tinycolor2": "^1.4.1",
     "url-join": "^1.1.0",
     "url-loader": "^0.5.7"
   },

@@ -1,4 +1,5 @@
 $black: #323232;
+$white: #EFEFEF;
 
     .actions {
         display: flex;
@@ -25,7 +26,19 @@ $black: #323232;
                 border-radius: 5px;
                 box-shadow: inset 0 0 0 1px #dddddd;
                 cursor: pointer;
+
+                p {
+                    filter: invert(0%);
+                    margin: 0;
+                }
+
+                &.invert {
+                    color: $white;
+                }
             }
         }
 
+        &.colorListContain {
+            flex-direction: column;
+        }
     }

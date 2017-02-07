@@ -9,7 +9,7 @@ export default CSSModules(class FontSection extends Component {
         super(props)
         // animation
         this.uploadFont = this.uploadFont.bind(this)
-        this.uploaSampleFont = this.uploadSampleFont.bind(this)
+        this.uploadSampleFont = this.uploadSampleFont.bind(this)
     }
     uploadFont (acceptedFiles, rejectedFiles) {
         console.log('Accepted & reject: ', acceptedFiles, rejectedFiles)
@@ -28,6 +28,7 @@ export default CSSModules(class FontSection extends Component {
                 console.log('Could not load font: ' + err)
             } else {
                 // Use font here.
+                console.log(sampleFont)
                 this.props.uploadFile(font)
             }
         })

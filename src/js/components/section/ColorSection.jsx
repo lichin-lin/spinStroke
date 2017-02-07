@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { SketchPicker } from 'react-color'
 
 export default class ColorSection extends Component {
     constructor (props) {
@@ -23,6 +24,9 @@ export default class ColorSection extends Component {
                     or, use some color themes we provide.</p>
                 </header>
                 <footer className="major">
+                    <ul className="actions">
+                        <SketchPicker />
+                    </ul>
                     <ul className="actions">
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
                         <li onClick={this.toggleSampleColorList}><a className="button">Choose Color Themes</a></li>

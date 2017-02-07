@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    Flag: 0,
+    Flag: false,
     File: ''
 }
 
@@ -11,8 +11,9 @@ export default handleActions({
         next (state, action) {
             return {
                 ...state,
+                Flag: true,
                 File: [
-                    ...state.File,
+
                     action.payload
                 ]
             }

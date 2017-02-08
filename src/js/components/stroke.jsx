@@ -34,32 +34,27 @@ export default CSSModules(class Base extends Component {
     loop () {
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
         ctx.clearRect(0, 0, 2000, 2000)
-        if (this.state.symbols.length === 0) {
-            return
+        if (this.state.symbols.length !== 0) {
+            let offset = this.state.offset + this.state.speed / this.state.symbols[this.state.symbolCounter].length
+            offset = offset >= 1 ? 0 : offset
+            this.state.offset = offset
+            this.drawPathToCanvas()
         }
-        let offset = this.state.offset + this.state.speed / this.state.symbols[this.state.symbolCounter].length
-        offset = offset >= 1 ? 0 : offset
-        this.state.offset = offset
-        this.drawPathToCanvas()
         requestAnimationFrame(this.loop)
     }
 
     tweenPaths () {
-        if (this.state.symbols.length === 0) {
-            return
-        }
-
-        TweenLite.to(this.state.interpolationPoint, this.state.transitionDuring, {
+        this.state.animation = TweenLite.to(this.state.interpolationPoint, this.state.transitionDuring, {
             percentage: 1,
             ease: Power2.easeInOut,
             delay: this.state.during,
-            onComplete: function () {
+            onComplete: () => {
                 this.state.interpolationPoint.percentage = 0
                 if (this.state.symbols.length) {
                     this.state.symbolCounter = (this.state.symbolCounter + 1) % this.state.symbols.length
                 }
                 this.tweenPaths()
-            }.bind(this)
+            }
         })
     }
 
@@ -121,22 +116,18 @@ export default CSSModules(class Base extends Component {
         ctx.lineCap = 'round'
         this.tweenPaths()
         this.loop()
-        console.log(this.state)
     }
 
     componentWillReceiveProps (nextProps) {
         this.setState({
             ...nextProps.Stroke,
-            symbols: nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol)))
+            symbols: nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol))),
+            symbolCounter: 0
         }, () => {
-            if (this.props.Stroke.symbols.length === 1) {
-                this.state.symbolCounter = 0
-                this.tweenPaths()
-                this.loop()
-            }
+            this.state.animation.kill()
+            this.tweenPaths()
         })
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
-        console.log(this.props.Text)
         ctx.canvas.width = this.props.Text.pathBound.x
         ctx.canvas.height = this.props.Text.pathBound.y
         ctx.lineWidth = nextProps.Stroke.lineWidth
@@ -145,7 +136,7 @@ export default CSSModules(class Base extends Component {
     render () {
         return (
             <div className="strokeContainer">
-                <canvas className="spincanvas" ref="spinCanvas" width="100" height="143"></canvas>
+                <canvas className="spincanvas" ref="spinCanvas"></canvas>
                 {/* <canvas className="spincanvas" ref="spinCanvas2" width="200" height="200"></canvas> */}
             </div>
         )

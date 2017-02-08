@@ -51,8 +51,8 @@ export default class ModeSection extends Component {
                     if (B.x1 < minX) minX = B.x1
                     if (B.x2 > maxX) maxX = B.x2
                     if (B.y1 < minY) minY = B.y1
-                    if (B.y2 < maxY) maxY = B.y2
-                    modList.push({x: B.x2 - B.x1, y: B.y2 - B.y1, minX: B.x1})
+                    if (B.y2 > maxY) maxY = B.y2
+                    modList.push({x: B.x2 - B.x1, y: B.y2 - B.y1, minX: B.x1, minY: B.y1})
                 }
                 console.log('result: ', minX, maxX, minY, maxY, 'modList', modList)
                 console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
@@ -63,12 +63,13 @@ export default class ModeSection extends Component {
                 // round2: really put path in to array and write back.
                 for (let i = 0; i < len; i++) {
                     let offsetX = ((modX - modList[i].x) / 2 - modList[i].minX)
-                    let offsetY = modY
+                    let offsetY = ((modY - modList[i].y) / 2 - modList[i].minY)
                     let HPath = HGlyths[i].getPath(offsetX, offsetY, size)
                     fontPaths.push(HPath.toPathData(2))
-                    this.props.addSymbol(HPath.toPathData(2))
+                    // this.props.addSymbol(HPath.toPathData(2))
                 }
-                console.log('final path', fontPaths)
+                this.props.setStrokeProps({symbols: fontPaths})
+                // console.log('final path', fontPaths)
             }
         })
     }

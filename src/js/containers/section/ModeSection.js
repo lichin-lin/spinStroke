@@ -12,7 +12,8 @@ const mapDispatchToProps = (dispatch) => ({
     modifyText: (data) => dispatch(Action.Text.modifyText(data)),
     modifyTextBound: (data) => dispatch(Action.Text.modifyTextBound(data)),
     addSymbol: (data) => dispatch(Action.Stroke.addSymbol(data)),
-    clearSymbol: (data) => dispatch(Action.Stroke.clearSymbol(data))
+    clearSymbol: (data) => dispatch(Action.Stroke.clearSymbol(data)),
+    setStrokeProps: (data) => dispatch(Action.Stroke.setProps(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Components.section.ModeSection)

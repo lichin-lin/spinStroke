@@ -63,7 +63,8 @@ export default CSSModules(class ColorSection extends Component {
                                         <li key={id} >
                                             <div className="colorBox" onClick={() => { this.cancelColor(id) } }
                                                 style= {{
-                                                    background: ele
+                                                    background: ele,
+                                                    color: (() => (tinycolor(ele).isDark() ? 'white' : 'black'))()
                                                 }}
                                             >
                                                 <p>{ele}</p>

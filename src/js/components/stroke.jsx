@@ -136,13 +136,16 @@ export default CSSModules(class Base extends Component {
             }
         })
         let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
+        console.log(this.props.Text)
+        ctx.canvas.width = this.props.Text.pathBound.x
+        ctx.canvas.height = this.props.Text.pathBound.y
         ctx.lineWidth = nextProps.Stroke.lineWidth
     }
 
     render () {
         return (
             <div className="strokeContainer">
-                <canvas className="spincanvas" ref="spinCanvas" width="200" height="143"></canvas>
+                <canvas className="spincanvas" ref="spinCanvas" width="100" height="143"></canvas>
                 {/* <canvas className="spincanvas" ref="spinCanvas2" width="200" height="200"></canvas> */}
             </div>
         )

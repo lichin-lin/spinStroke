@@ -3,7 +3,8 @@ import Components from 'js/components'
 import Action from 'js/actions'
 
 const mapStateToProps = (state, ownProps) => ({
-    Stroke: state.Stroke
+    Stroke: state.Stroke,
+    Text: state.Text
 })
 
 const mapDispatchToProps = (dispatch) => ({

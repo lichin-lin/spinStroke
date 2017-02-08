@@ -58,6 +58,7 @@ export default class ModeSection extends Component {
                 console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
                 let modX = Math.abs((maxX - minX))
                 let modY = Math.abs((maxY - minY))
+                this.props.modifyTextBound({ x: modX, y: modY })
 
                 // round2: really put path in to array and write back.
                 for (let i = 0; i < len; i++) {

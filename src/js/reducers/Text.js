@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    input: ''
+    input: '',
+    pathBound: {}
 }
 
 export default handleActions({
@@ -19,7 +20,19 @@ export default handleActions({
             }
         }
     },
-
+    MODIFY_TEXTBOUND: {
+        next (state, action) {
+            return {
+                ...state,
+                pathBound: action.payload
+            }
+        },
+        throw (state, action) {
+            return {
+                ...state
+            }
+        }
+    },
     default: (state, action) => {
         return {
             ...state

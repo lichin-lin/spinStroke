@@ -121,6 +121,7 @@ export default CSSModules(class Base extends Component {
         ctx.lineCap = 'round'
         this.tweenPaths()
         this.loop()
+        console.log(this.state)
     }
 
     componentWillReceiveProps (nextProps) {
@@ -141,7 +142,8 @@ export default CSSModules(class Base extends Component {
     render () {
         return (
             <div className="strokeContainer">
-                <canvas id="spincanvas" ref="spinCanvas" width="300" height="250"></canvas>
+                <canvas className="spincanvas" ref="spinCanvas" width="200" height="143"></canvas>
+                {/* <canvas className="spincanvas" ref="spinCanvas2" width="200" height="200"></canvas> */}
             </div>
         )
     }

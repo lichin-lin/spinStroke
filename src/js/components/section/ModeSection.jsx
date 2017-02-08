@@ -6,16 +6,21 @@ export default class ModeSection extends Component {
         super(props)
         // function
         this.handleChange = this.handleChange.bind(this)
+        this.handleChangeSize = this.handleChangeSize.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
             ...props.File,
             ...props.Stroke,
-            text: ''
+            text: '',
+            size: 200
         }
     }
     handleChange (event) {
         this.setState({text: event.target.value})
         // this.props.modifyText(event.target.value)
+    }
+    handleChangeSize (event) {
+        this.setState({size: event.target.value})
     }
     handleSubmit () {
         this.props.modifyText(this.state.text)
@@ -25,7 +30,7 @@ export default class ModeSection extends Component {
             } else {
                 // Use font here.
                 this.props.clearSymbol()
-                let size = 200
+                let size = this.state.size
                 let fontPaths = []
                 let HGlyths = font.stringToGlyphs(this.state.text)
                 let len = HGlyths.length
@@ -83,6 +88,17 @@ export default class ModeSection extends Component {
                             placeholder="type Trump?"
                             value={this.state.text}
                             onChange={this.handleChange}
+                            style={{
+                                maxWidth: '500px'
+                            }}
+                        />
+                        <input
+                            type="text"
+                            name="demo-size"
+                            id="demo-size"
+                            placeholder="200"
+                            value={this.state.size}
+                            onChange={this.handleChangeSize}
                             style={{
                                 maxWidth: '500px'
                             }}

@@ -3,10 +3,10 @@ import { handleActions } from 'redux-actions'
 const initialState = {
     symbols: [],
     colors: ['#9DF3C4', '#EA7362', '#74ceee', '#FFCA61'],
-    lineWidth: 2,
-    speed: 5,
-    during: 1.25,
-    transitionDuring: 0.75
+    lineWidth: 3,
+    speed: 3,
+    during: 1.5,
+    transitionDuring: 0.5
 }
 
 export default handleActions({

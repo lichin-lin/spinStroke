@@ -18,7 +18,7 @@ export default CSSModules(class FontSection extends Component {
                 console.log('Could not load font: ' + err)
             } else {
                 // Use font here.
-                this.props.uploadFile(font)
+                this.props.uploadFile(acceptedFiles[0].preview)
             }
         })
     }
@@ -29,7 +29,7 @@ export default CSSModules(class FontSection extends Component {
             } else {
                 // Use font here.
                 console.log(sampleFont)
-                this.props.uploadFile(font)
+                this.props.uploadFile(sampleFont)
             }
         })
     }

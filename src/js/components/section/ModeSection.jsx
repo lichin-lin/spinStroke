@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import opentype from 'opentype.js'
 
 export default class ModeSection extends Component {
     constructor (props) {
@@ -7,14 +8,34 @@ export default class ModeSection extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
+            ...props.File,
+            ...props.Stroke,
             text: ''
         }
     }
     handleChange (event) {
         this.setState({text: event.target.value})
+        // this.props.modifyText(event.target.value)
     }
     handleSubmit () {
-        console.log(this.state.text)
+        this.props.modifyText(this.state.text)
+        opentype.load(this.props.File.Font, (err, font) => {
+            if (err) {
+                console.log('Could not load font: ' + err)
+            } else {
+                // Use font here.
+                this.props.clearSymbol()
+                let fontPaths = []
+                let HGlyths = font.stringToGlyphs(this.state.text)
+                console.log('glyth: ', HGlyths)
+                for (let i = 0; i < HGlyths.length; i++) {
+                    let HPath = HGlyths[i].getPath(50, 200, 200)
+                    fontPaths.push(HPath.toPathData(2))
+                    this.props.addSymbol(HPath.toPathData(2))
+                }
+                console.log('final path', fontPaths)
+            }
+        })
     }
     render () {
         return (

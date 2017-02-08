@@ -1,20 +1,16 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    Flag: false,
-    Font: ''
+    input: ''
 }
 
 export default handleActions({
 
-    UPLOAD_FILE: {
+    MODIFY_TEXT: {
         next (state, action) {
             return {
                 ...state,
-                Flag: true,
-                Font: [
-                    action.payload
-                ]
+                input: action.payload
             }
         },
         throw (state, action) {

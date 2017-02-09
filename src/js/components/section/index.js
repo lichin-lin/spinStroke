@@ -1,15 +1,17 @@
-import Header from './Header'
+import ColorSection from './ColorSection'
+import ControllSection from './ControllSection'
 import FontSection from './FontSection'
 import FooterSection from './FooterSection'
-import ColorSection from './ColorSection'
+import Header from './Header'
 import ModeSection from './ModeSection'
 import PlayGround from './PlayGround'
 
 export default {
-    Header,
+    ColorSection,
+    ControllSection,
     FontSection,
     FooterSection,
-    ColorSection,
+    Header,
     ModeSection,
     PlayGround
 }

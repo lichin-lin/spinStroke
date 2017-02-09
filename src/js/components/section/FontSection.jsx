@@ -36,11 +36,11 @@ export default CSSModules(class FontSection extends Component {
     render () {
         return (
             <section id="Font" className="main special">
-                <header className="major">
+                {/* <header className="major">
                     <h2>Step1. Upload Font</h2>
                     <p>Upload any kind of font you like<br />
                     or, use our sample font!</p>
-                </header>
+                </header> */}
                 <footer className="major">
                     <ul className="actions">
                         <li onClick={this.uploadFont}>

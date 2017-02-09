@@ -1,0 +1,35 @@
+
+.ReactTabs
+    width: 100%
+    .ReactTabs__TabList
+        width: 100%
+        display: flex
+        align-items: center
+        margin: 0
+        .ReactTabs__Tab
+            flex: 1
+            padding: 10px 0
+            .TabInfo
+                display: flex
+                justify-content: center
+                align-items: center
+                font-size: 1em
+                @media screen and (max-width: 768px)
+                    flex-direction: column
+            &.ReactTabs__Tab--selected
+                border-top: 1px solid darken(#ddd, 25%)
+                border-left: 1px solid #ddd
+                border-right: 1px solid #ddd
+                border-bottom: 1px solid #FFF
+    .ReactTabs__TabPanel
+        padding: 30px 0
+        border-left: 1px solid #ddd
+        border-right: 1px solid #ddd
+        border-bottom: 1px solid #ddd
+        border-bottom-left-radius: 5px
+        border-bottom-right-radius: 5px
+
+.react-tabs [role=tab]
+    bottom -1px
+.react-tabs [role=tablist]
+    border-bottom: 1px solid #ddd

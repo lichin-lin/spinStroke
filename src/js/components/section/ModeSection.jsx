@@ -12,7 +12,7 @@ export default class ModeSection extends Component {
             ...props.File,
             ...props.Stroke,
             text: '',
-            size: 300
+            size: 300,
         }
     }
     handleChange (event) {
@@ -80,15 +80,22 @@ export default class ModeSection extends Component {
             }
         })
     }
+    handleChange = (slider, value) => {
+        const newState = {}
+        newState[slider] = value
+        this.setState(newState)
+    }
     render () {
         return (
             <section id="Mode" className="main special">
-                <header className="major">
+                {/* <header className="major">
                     <h2>Step3. Input Text</h2>
                     <p>type any word in your mind<br />
                     and ready for the magic!</p>
-                </header>
+                </header> */}
                 <footer className="major">
+                    <ul className="actions">
+                    </ul>
                     <ul className="actions">
                         <input
                             type="text"

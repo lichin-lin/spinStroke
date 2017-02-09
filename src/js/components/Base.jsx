@@ -24,6 +24,7 @@ export default CSSModules(class Base extends Component {
                     <Containers.section.ColorSection />
                     <Containers.section.ModeSection />
                     <Containers.section.PlayGround />
+                    <Containers.section.ControllSection />
                 </div>
                 <Containers.section.FooterSection />
             </div>

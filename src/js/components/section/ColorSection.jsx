@@ -40,11 +40,11 @@ export default CSSModules(class ColorSection extends Component {
     render () {
         return (
             <section id="Color" className="main special">
-                <header className="major">
+                {/* <header className="major">
                     <h2>Step2. Pick Colors</h2>
                     <p>Pick any colors from the list<br />
                     or, use some color themes we provide.</p>
-                </header>
+                </header> */}
                 <footer className="major">
                     <ul className="actions">
                         <SketchPicker

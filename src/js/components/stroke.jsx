@@ -16,13 +16,14 @@ export default CSSModules(class Base extends Component {
         // state
         this.state = {
             ...props.Stroke,
-            steps: 1000,
+            steps: 2000,
             offset: 0,
             symbolCounter: 0,
             interpolationPoint: {
                 percentage: 0
             },
-            symbols: []
+            symbols: [],
+            sourceSymbols: []
         }
     }
     distance (a, b) {
@@ -119,10 +120,16 @@ export default CSSModules(class Base extends Component {
     }
 
     componentWillReceiveProps (nextProps) {
+        var symbols
+        if (nextProps.Stroke.symbols === this.state.sourceSymbols) {
+            symbols = this.state.symbols
+        } else {
+            symbols = nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol)))
+        }
         this.setState({
             ...nextProps.Stroke,
-            symbols: nextProps.Stroke.symbols.map((symbol) => (this.samplePath(symbol))),
-            symbolCounter: 0
+            sourceSymbols: nextProps.Stroke.symbols,
+            symbols: symbols
         }, () => {
             this.state.animation.kill()
             this.tweenPaths()

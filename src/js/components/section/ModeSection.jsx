@@ -12,7 +12,7 @@ export default class ModeSection extends Component {
             ...props.File,
             ...props.Stroke,
             text: '',
-            size: 200
+            size: 300
         }
     }
     handleChange (event) {
@@ -46,7 +46,7 @@ export default class ModeSection extends Component {
                 // round1: get min/max for (x,y)
                 for (let i = 0; i < len; i++) {
                     let HPath = HGlyths[i].getPath(0, 0, size)
-                    console.log('[Path] this is Bound', HPath.getBoundingBox())
+                    // console.log('[Path] this is Bound', HPath.getBoundingBox())
                     let B = HPath.getBoundingBox()
                     if (B.x1 < minX) minX = B.x1
                     if (B.x2 > maxX) maxX = B.x2
@@ -54,8 +54,8 @@ export default class ModeSection extends Component {
                     if (B.y2 > maxY) maxY = B.y2
                     modList.push({x: B.x2 - B.x1, y: B.y2 - B.y1, minX: B.x1, minY: B.y1})
                 }
-                console.log('result: ', minX, maxX, minY, maxY, 'modList', modList)
-                console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
+                // console.log('result: ', minX, maxX, minY, maxY, 'modList', modList)
+                // console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
                 let modX = Math.abs((maxX - minX))
                 let modY = Math.abs((maxY - minY))
                 this.props.modifyTextBound({ x: modX, y: modY })

@@ -105,6 +105,7 @@ export default CSSModules(class Base extends Component {
         path.setAttribute('d', pathStroke)
         let length = path.getTotalLength()
         let points = [...Array(this.state.steps).keys()].map((i) => (path.getPointAtLength(length * i / this.state.steps)))
+        console.log(length)
         return {
             length: length,
             path: points

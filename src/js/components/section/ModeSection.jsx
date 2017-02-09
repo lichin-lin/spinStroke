@@ -29,10 +29,10 @@ export default class ModeSection extends Component {
                 console.log('Could not load font: ' + err)
             } else {
                 // Use font here.
-                this.props.clearSymbol()
                 let size = this.state.size
-                let fontPaths = []
-                let HGlyths = font.stringToGlyphs(this.state.text)
+                // let fontPaths = []
+                let textList = ['abc', 'def']
+                let HGlyths = textList.map((text) => (font.getPath(text, 500, 500, size)))
                 let len = HGlyths.length
                 console.log('glyth: ', HGlyths)
 
@@ -45,7 +45,8 @@ export default class ModeSection extends Component {
 
                 // round1: get min/max for (x,y)
                 for (let i = 0; i < len; i++) {
-                    let HPath = HGlyths[i].getPath(0, 0, size)
+                    let HPath = HGlyths[i]
+                    // let HPath = HGlyths[i].getPath(0, 0, size)
                     // console.log('[Path] this is Bound', HPath.getBoundingBox())
                     let B = HPath.getBoundingBox()
                     if (B.x1 < minX) minX = B.x1
@@ -54,12 +55,14 @@ export default class ModeSection extends Component {
                     if (B.y2 > maxY) maxY = B.y2
                     modList.push({x: B.x2 - B.x1, y: B.y2 - B.y1, minX: B.x1, minY: B.y1})
                 }
-                // console.log('result: ', minX, maxX, minY, maxY, 'modList', modList)
-                // console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
-                let modX = Math.abs((maxX - minX))
-                let modY = Math.abs((maxY - minY))
-                this.props.modifyTextBound({ x: modX, y: modY })
+                console.log('result: ', minX, maxX, minY, maxY, 'modList', modList)
+                console.log('modify (x,y) ', Math.abs((maxX - minX) / 2), Math.abs((maxY - minY) / 2))
+                // let modX = Math.abs((maxX - minX))
+                // let modY = Math.abs((maxY - minY))
+                this.props.modifyTextBound({ x: 1000, y: 500 })
+                // this.props.modifyTextBound({ x: modX, y: modY })
 
+                /*
                 // round2: really put path in to array and write back.
                 for (let i = 0; i < len; i++) {
                     let offsetX = ((modX - modList[i].x) / 2 - modList[i].minX)
@@ -68,6 +71,10 @@ export default class ModeSection extends Component {
                     fontPaths.push(HPath.toPathData(2))
                     // this.props.addSymbol(HPath.toPathData(2))
                 }
+                */
+                let fontPaths = HGlyths.map((HPath) => {
+                    return HPath.toPathData(2)
+                })
                 this.props.setStrokeProps({symbols: fontPaths})
                 // console.log('final path', fontPaths)
             }

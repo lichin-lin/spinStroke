@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
 import Containers from 'js/containers'
+import CSSModules from 'react-css-modules'
 
 @Radium
-export default class PlayGround extends Component {
+export default CSSModules(class PlayGround extends Component {
     render () {
         return (
             <section id="Playground" className="main special">
@@ -21,14 +22,18 @@ export default class PlayGround extends Component {
                             width: '100%'
 
                         }}
-                    className="actions"
+                    className="actions board"
                     >
                         <Containers.stroke />
                     </ul>
-                    <ul className="actions">
+                    <ul className="actions controller">
+                        <Containers.section.ControllSection />
                     </ul>
+                </footer>
+                <footer className="major">
+
                 </footer>
             </section>
         )
     }
-}
+}, require('./PlayGround.styl'))

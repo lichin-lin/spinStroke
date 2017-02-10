@@ -1,0 +1,25 @@
+$slideColor = #0AF
+.slideControll
+    display: flex
+    flex-direction: column
+    align-items: center
+    li
+        max-width: 500px
+        width: 100%
+        padding: 0 !important
+        margin: 20px 0
+        text-align: left
+        >p
+            margin: 5px 0 10px 0
+            font-weight: bold
+        .input-range__track--active
+            background: $slideColor
+        .input-range__slider-container
+            div
+                border-color: $slideColor
+                background: $slideColor
+
+
+#Font
+    @media screen and (max-width: 768px)
+        width: 100%

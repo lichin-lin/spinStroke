@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
 import opentype from 'opentype.js'
+import InputRange from 'react-input-range'
+import CSSModules from 'react-css-modules'
+import 'react-input-range/lib/css/index.css'
 
-export default class ModeSection extends Component {
+export default CSSModules(class ModeSection extends Component {
     constructor (props) {
         super(props)
         // function
@@ -13,6 +16,9 @@ export default class ModeSection extends Component {
             ...props.Stroke,
             text: '',
             size: 300,
+            FontSize: 500,
+            AnimationSpeed: 50,
+            ChangeRate: 50
         }
     }
     handleChange (event) {
@@ -29,7 +35,8 @@ export default class ModeSection extends Component {
                 console.log('Could not load font: ' + err)
             } else {
                 // Use font here.
-                let size = this.state.size
+                // let size = this.state.size
+                let size = this.state.FontSize
                 // let fontPaths = []
                 let textList = ['abc', 'def']
                 let HGlyths = textList.map((text) => (font.getPath(text, 500, 500, size)))
@@ -93,10 +100,11 @@ export default class ModeSection extends Component {
                     <p>type any word in your mind<br />
                     and ready for the magic!</p>
                 </header> */}
-                <footer className="major">
-                    <ul className="actions">
-                    </ul>
-                    <ul className="actions">
+                <ul className="actions">
+                </ul>
+                <ul className="actions slideControll">
+                    <li>
+                        <p>Input:</p>
                         <input
                             type="text"
                             name="demo-name"
@@ -104,27 +112,40 @@ export default class ModeSection extends Component {
                             placeholder="type Trump?"
                             value={this.state.text}
                             onChange={this.handleChange}
-                            style={{
-                                maxWidth: '500px'
-                            }}
                         />
-                        <input
-                            type="text"
-                            name="demo-size"
-                            id="demo-size"
-                            placeholder="200"
-                            value={this.state.size}
-                            onChange={this.handleChangeSize}
-                            style={{
-                                maxWidth: '500px'
-                            }}
-                        />
-                    </ul>
-                    <ul className="actions">
-                        <li onClick={this.handleSubmit}><a className="button special">submit</a></li>
-                    </ul>
-                </footer>
+                    </li>
+                    <li>
+                        <p>FontSize:</p>
+                        <InputRange
+                          maxValue={1000}
+                          minValue={100}
+                          step={10}
+                          value={this.state.FontSize}
+                          onChange={FontSize => this.setState({FontSize: FontSize})} />
+                    </li>
+                    <li>
+                        <p>Animation Speed:</p>
+                        <InputRange
+                          maxValue={100}
+                          minValue={10}
+                          step={10}
+                          value={this.state.AnimationSpeed}
+                          onChange={AnimationSpeed => this.setState({AnimationSpeed: AnimationSpeed})} />
+                    </li>
+                    <li>
+                        <p>Change Rate:</p>
+                        <InputRange
+                          maxValue={100}
+                          minValue={10}
+                          step={10}
+                          value={this.state.ChangeRate}
+                          onChange={ChangeRate => this.setState({ChangeRate: ChangeRate})} />
+                    </li>
+                </ul>
+                <ul className="actions">
+                    <li onClick={this.handleSubmit}><a className="button special">update</a></li>
+                </ul>
             </section>
         )
     }
-}
+}, require('./ModeSection.styl'))

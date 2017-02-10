@@ -8,13 +8,18 @@ import TiCogOutline from 'react-icons/lib/ti/cog-outline'
 import FaEyedropper from 'react-icons/lib/fa/eyedropper'
 
 export default CSSModules(class ControllSection extends Component {
+    constructor (props) {
+        super(props)
+        this.state = {
+            value: 500
+        }
+    }
     handleSelect (index, last) {
         console.log('Selected tab: ' + index + ', Last tab: ' + last)
     }
     render () {
         return (
             <section id="Font" className="main special">
-                <footer className="major">
                     <ul className="actions">
                         <Tabs
                           onSelect={this.handleSelect}
@@ -24,19 +29,19 @@ export default CSSModules(class ControllSection extends Component {
                                 <Tab>
                                     <div className="TabInfo">
                                         <FaFont size={24}/>
-                                        Font
+                                        <p>Font</p>
                                     </div>
                                 </Tab>
                                 <Tab>
                                     <div className="TabInfo">
                                         <FaEyedropper size={24}/>
-                                        Color
+                                        <p>Color</p>
                                     </div>
                                 </Tab>
                                 <Tab>
                                     <div className="TabInfo">
                                         <TiCogOutline size={24}/>
-                                        Setting
+                                        <p>Setting</p>
                                     </div>
                                 </Tab>
                             </TabList>
@@ -52,7 +57,6 @@ export default CSSModules(class ControllSection extends Component {
                             </TabPanel>
                         </Tabs>
                     </ul>
-                </footer>
             </section>
         )
     }

@@ -1,7 +1,15 @@
 #Playground
     >footer
         display: flex
+        justify-content: space-around
+        @media screen and (max-width: 768px)
+            flex-direction: column
+            .board
+                width: 100% !important
+                height: 100vh
+            .controller
+                width: 100% !important
         .board
-            width: 84%
+            width: 75%
         .controller
-            width: 16%
+            width: 20%

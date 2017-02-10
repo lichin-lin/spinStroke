@@ -54,7 +54,7 @@ export default CSSModules(class ColorSection extends Component {
                     </ul>
                     <ul className="actions">
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
-                        <li onClick={this.colorBoxTextSetting}><a className="button">Choose Color Themes</a></li>
+                        {/* <li onClick={this.colorBoxTextSetting}><a className="button">Choose Color Themes</a></li> */}
                     </ul>
                     <ul className="actions colorListContain">
                         <div className="colorList">

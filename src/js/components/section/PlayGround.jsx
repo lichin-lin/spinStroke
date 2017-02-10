@@ -17,10 +17,7 @@ export default CSSModules(class PlayGround extends Component {
                     <ul
                         style={{
                             border: '1px solid #ddd',
-                            borderRadius: '5px',
-                            height: '500px',
-                            width: '100%'
-
+                            borderRadius: '5px'
                         }}
                     className="actions board"
                     >

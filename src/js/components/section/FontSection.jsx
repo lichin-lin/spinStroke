@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import opentype from 'opentype.js'
-import Dropzone from 'react-dropzone'
+// import Dropzone from 'react-dropzone'
 import CSSModules from 'react-css-modules'
 import sampleFont from './../../../fonts/Raleway.ttf'
 
@@ -43,11 +43,11 @@ export default CSSModules(class FontSection extends Component {
                 </header> */}
                 <footer className="major">
                     <ul className="actions">
-                        <li onClick={this.uploadFont}>
+                        {/* <li onClick={this.uploadFont}>
                             <Dropzone onDrop={this.uploadFont} className="dropZone">
                                 <a className="button special">Upload Font</a>
                             </Dropzone>
-                        </li>
+                        </li> */}
                         <li onClick={this.uploadSampleFont}><a className="button">Sample Font</a></li>
                     </ul>
                 </footer>

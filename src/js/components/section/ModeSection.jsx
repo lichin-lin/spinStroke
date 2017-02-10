@@ -87,11 +87,6 @@ export default CSSModules(class ModeSection extends Component {
             }
         })
     }
-    handleChange = (slider, value) => {
-        const newState = {}
-        newState[slider] = value
-        this.setState(newState)
-    }
     render () {
         return (
             <section id="Mode" className="main special">

@@ -15,12 +15,12 @@
                 justify-content: center
                 align-items: center
                 font-size: 1em
-                @media screen and (max-width: 768px)
+                @media screen and (max-width: 1024px)
                     flex-direction: column
                 p
                     font-size: 1.25em
                     margin: 0
-                    @media screen and (min-width: 768px)
+                    @media screen and (min-width: 1024px)
                         display: none
             &.ReactTabs__Tab--selected
                 border-top: 1px solid darken(#ddd, 25%)
@@ -41,7 +41,8 @@
     border-bottom: 1px solid #ddd
 
 section
+    width: 100%
     ul
         margin-bottom: 20px
-        @media screen and (max-width: 768px)
+        @media screen and (max-width: 1024px)
             margin: 20px 0

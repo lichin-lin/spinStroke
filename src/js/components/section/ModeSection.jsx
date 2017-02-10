@@ -30,7 +30,8 @@ export default CSSModules(class ModeSection extends Component {
     }
     handleSubmit () {
         this.props.modifyText(this.state.text)
-        opentype.load(this.props.File.Font, (err, font) => {
+        var url = 'https://fonts.gstatic.com/s/roboto/v15/i0Up8OwuR1OCkHxm4iiTTPesZW2xOQ-xsNqO47m55DA.woff'
+        opentype.load(url, (err, font) => {
             if (err) {
                 console.log('Could not load font: ' + err)
             } else {

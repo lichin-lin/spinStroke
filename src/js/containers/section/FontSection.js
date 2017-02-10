@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    uploadFile: (data) => dispatch(Action.File.uploadFile(data))
+    uploadFile: (data) => dispatch(Action.File.uploadFile(data)),
+    getsFont: () => dispatch(Action.Font.getsFont)
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Components.section.FontSection)

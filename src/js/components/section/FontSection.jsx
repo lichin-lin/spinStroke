@@ -33,6 +33,9 @@ export default CSSModules(class FontSection extends Component {
             }
         })
     }
+    componentDidMount () {
+        this.props.getsFont()
+    }
     render () {
         return (
             <section id="Font" className="main special">

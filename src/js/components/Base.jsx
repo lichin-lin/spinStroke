@@ -20,9 +20,9 @@ export default CSSModules(class Base extends Component {
                     </ul>
                 </nav>
                 <div id="main">
-                    <Containers.section.FontSection />
-                    <Containers.section.ColorSection />
-                    <Containers.section.ModeSection />
+                    <Containers.intro.FontIntro />
+                    <Containers.intro.ColorIntro />
+                    <Containers.intro.ModeIntro />
                     <Containers.section.PlayGround />
                     {/* <Containers.section.ControllSection /> */}
                 </div>

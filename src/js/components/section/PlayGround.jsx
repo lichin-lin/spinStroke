@@ -10,8 +10,7 @@ export default CSSModules(class PlayGround extends Component {
             <section id="Playground" className="main special">
                 <header className="major">
                     <h2>Playground</h2>
-                    <p>that`s cool right?<br />
-                    we will provide more feature in the future.</p>
+                    {/* <p>that's cool right?</p> */}
                 </header>
                 <footer className="major">
                     <ul

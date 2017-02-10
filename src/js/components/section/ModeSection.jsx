@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import opentype from 'opentype.js'
-import InputRange from 'react-input-range'
 import CSSModules from 'react-css-modules'
+
+import InputRange from 'react-input-range'
 import 'react-input-range/lib/css/index.css'
+import {Creatable} from 'react-select'
+import 'react-select/dist/react-select.css'
 
 export default CSSModules(class ModeSection extends Component {
     constructor (props) {
@@ -11,10 +14,17 @@ export default CSSModules(class ModeSection extends Component {
         this.handleChange = this.handleChange.bind(this)
         this.handleChangeSize = this.handleChangeSize.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.InputChangeHandler = this.InputChangeHandler.bind(this)
         this.state = {
             ...props.File,
             ...props.Stroke,
             text: '',
+            textArray: [
+                { value: 'come', label: 'come' },
+                { value: 'edit', label: 'edit' },
+                { value: 'me', label: 'me' }
+            ],
+            multiValue: [],
             size: 300,
             FontSize: 500,
             AnimationSpeed: 50,
@@ -28,10 +38,14 @@ export default CSSModules(class ModeSection extends Component {
     handleChangeSize (event) {
         this.setState({size: event.target.value})
     }
+    InputChangeHandler (val) {
+        console.log(val)
+        this.setState({ multiValue: val })
+    }
     handleSubmit () {
         this.props.modifyText(this.state.text)
-        var url = 'https://fonts.gstatic.com/s/roboto/v15/i0Up8OwuR1OCkHxm4iiTTPesZW2xOQ-xsNqO47m55DA.woff'
-        opentype.load(url, (err, font) => {
+        let uploadfont = this.props.File.File // 'https://fonts.gstatic.com/s/roboto/v15/i0Up8OwuR1OCkHxm4iiTTPesZW2xOQ-xsNqO47m55DA.woff'
+        opentype.load(uploadfont, (err, font) => {
             if (err) {
                 console.log('Could not load font: ' + err)
             } else {
@@ -39,7 +53,7 @@ export default CSSModules(class ModeSection extends Component {
                 // let size = this.state.size
                 let size = this.state.FontSize
                 // let fontPaths = []
-                let textList = ['abc', 'def']
+                let textList = this.state.multiValue.map((text) => (text.label))
                 let HGlyths = textList.map((text) => (font.getPath(text, 500, 500, size)))
                 let len = HGlyths.length
                 console.log('glyth: ', HGlyths)
@@ -101,13 +115,11 @@ export default CSSModules(class ModeSection extends Component {
                 <ul className="actions slideControll">
                     <li>
                         <p>Input:</p>
-                        <input
-                            type="text"
-                            name="demo-name"
-                            id="demo-name"
-                            placeholder="type Trump?"
-                            value={this.state.text}
-                            onChange={this.handleChange}
+                        <Creatable
+                            multi={true}
+                            options={this.state.textArray}
+                            onChange={this.InputChangeHandler}
+                            value={this.state.multiValue}
                         />
                     </li>
                     <li>

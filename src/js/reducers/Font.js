@@ -1,7 +1,8 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    Font: ''
+    AllFont: [],
+    FontStyle: []
 }
 
 export default handleActions({
@@ -9,7 +10,20 @@ export default handleActions({
         next (state, action) {
             return {
                 ...state,
-                Font: action.payload
+                AllFont: action.payload
+            }
+        },
+        throw (state, action) {
+            return {
+                ...state
+            }
+        }
+    },
+    GETS_FONTSTYLE: {
+        next (state, action) {
+            return {
+                ...state,
+                FontStyle: action.payload.variants
             }
         },
         throw (state, action) {

@@ -1,15 +1,22 @@
 import React, { Component } from 'react'
 import opentype from 'opentype.js'
-// import Dropzone from 'react-dropzone'
 import CSSModules from 'react-css-modules'
-import sampleFont from './../../../fonts/Raleway.ttf'
+
+import Select from 'react-select'
+import 'react-select/dist/react-select.css'
 
 export default CSSModules(class FontSection extends Component {
     constructor (props) {
         super(props)
-        // animation
+
         this.uploadFont = this.uploadFont.bind(this)
-        this.uploadSampleFont = this.uploadSampleFont.bind(this)
+        this.FontChangeHandler = this.FontChangeHandler.bind(this)
+        this.state = {
+            options: [
+                { value: 'Roboto', label: 'Roboto' }
+            ],
+            target: 'Roboto'
+        }
     }
     uploadFont (acceptedFiles, rejectedFiles) {
         console.log('Accepted & reject: ', acceptedFiles, rejectedFiles)
@@ -22,19 +29,16 @@ export default CSSModules(class FontSection extends Component {
             }
         })
     }
-    uploadSampleFont () {
-        opentype.load(sampleFont, (err, font) => {
-            if (err) {
-                console.log('Could not load font: ' + err)
-            } else {
-                // Use font here.
-                console.log(sampleFont)
-                this.props.uploadFile(sampleFont)
-            }
-        })
+    FontChangeHandler (val) {
+        this.setState({target: val})
     }
     componentDidMount () {
         this.props.getsFont()
+    }
+    componentWillReceiveProps (nextProps) {
+        let data = []
+        nextProps.Font.Font.map((font) => data.push({ 'value': font.id, 'label': font.id }))
+        this.setState({options: data})
     }
     render () {
         return (
@@ -46,15 +50,19 @@ export default CSSModules(class FontSection extends Component {
                 </header> */}
                 <footer className="major">
                     <ul className="actions">
-                        {/* <li onClick={this.uploadFont}>
-                            <Dropzone onDrop={this.uploadFont} className="dropZone">
-                                <a className="button special">Upload Font</a>
-                            </Dropzone>
-                        </li> */}
-                        <li onClick={this.uploadSampleFont}><a className="button">Sample Font</a></li>
+                        <Select
+                            name="FontSelector"
+                            value={this.state.target}
+                            SelectSearchable="True"
+                            options={this.state.options}
+                            onChange={this.FontChangeHandler}
+                            style={{
+                                'width': '300px'
+                            }}
+                        />
                     </ul>
                 </footer>
             </section>
         )
     }
-}, require('./../../../sass/layout/section/fontSection.scss'))
+}, require('./FontSection.styl'))

@@ -1,16 +1,15 @@
 import { handleActions } from 'redux-actions'
 
 const initialState = {
-    Flag: false
+    Font: ''
 }
 
 export default handleActions({
-
-    UPLOAD_FILE: {
+    GETS_FONT: {
         next (state, action) {
             return {
                 ...state,
-                Flag: true
+                Font: action.payload
             }
         },
         throw (state, action) {

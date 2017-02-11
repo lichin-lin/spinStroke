@@ -4,6 +4,7 @@ import setting from './setting'
 import App from './App'
 import Base from './Base'
 import DevTools from './DevTools'
+import Iframe from './Iframe'
 import stroke from './stroke'
 export default {
     intro,
@@ -12,5 +13,6 @@ export default {
     App,
     Base,
     DevTools,
+    Iframe,
     stroke
 }

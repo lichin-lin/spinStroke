@@ -4,7 +4,6 @@ import store from './stores/Store'
 import { syncHistoryWithStore } from 'react-router-redux'
 const history = syncHistoryWithStore(browserHistory, store)
 
-// import Components from 'js/components'
 import Containers from 'js/containers'
 
 export default class Root extends Component {
@@ -16,8 +15,8 @@ export default class Root extends Component {
                     <Route path="login" component={Containers.Login} />
                     <Route path="stroke" component={Containers.stroke} />
                     <Route path="upload" component={Containers.Upload} />
-                    <Route path="stroke" component={Containers.stroke} />
                 </Route>
+                <Route path="/iframe" component={Containers.Iframe} />
             </Router>
 
         )

@@ -54,7 +54,7 @@ export default CSSModules(class ModeSection extends Component {
                 let size = this.state.FontSize
                 // let fontPaths = []
                 let textList = this.state.multiValue.map((text) => (text.label))
-                let HGlyths = textList.map((text) => (font.getPath(text, 500, 500, size)))
+                let HGlyths = textList.map((text) => (font.getPath(text, 0, 0, size)))
                 let len = HGlyths.length
                 console.log('glyth: ', HGlyths)
 

@@ -85,4 +85,4 @@ export default CSSModules(class ColorSection extends Component {
             </section>
         )
     }
-}, require('./colorSection.styl'))
+}, require('./ColorSection.styl'))

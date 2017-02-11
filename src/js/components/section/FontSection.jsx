@@ -13,10 +13,8 @@ export default CSSModules(class FontSection extends Component {
         this.StyleChangeHandler = this.StyleChangeHandler.bind(this)
         this.state = {
             options: [
-                { value: 'Roboto', label: 'Roboto' }
             ],
             StyleOptions: [
-
             ],
             target: 'Roboto',
             StyleTarget: ''

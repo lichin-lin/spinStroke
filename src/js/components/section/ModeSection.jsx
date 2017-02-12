@@ -142,7 +142,13 @@ export default CSSModules(class ModeSection extends Component {
                 <ul className="actions">
                     <li onClick={this.handleSubmit}><a className="button special">update</a></li>
                 </ul>
-                <input type="text" value={this.state.iframeURL} />
+                <ul className="actions slideControll">
+                    <li>
+                        <p>Iframe link:</p>
+                        <input type="text" value={this.state.iframeURL} />
+                    </li>
+                </ul>
+
             </section>
         )
     }

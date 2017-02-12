@@ -9,7 +9,7 @@ export default CSSModules(class PlayGround extends Component {
             <section id="Color" className="main special">
                 <header className="major">
                     <h2>Step2. Pick Colors</h2>
-                    <img className="svgImg" src='https://lichin.me/spinStroke/src/image/ColorPicker.svg'/>
+                    <img className="svgImg" src='/image/ColorPicker.svg'/>
                     <p>
                         Do not limit your imagination,<br />
                     make your own color theme combinations

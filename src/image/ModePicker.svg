@@ -39,10 +39,11 @@
                 </mask>
                 <use id="Mask" fill="#FFE071" xlink:href="#path-1"></use>
                 <g id="colorSection" mask="url(#mask-2)">
-                    <g transform="translate(72.000000, 98.000000)">
-                        <g id="pickbox" stroke-width="1" fill="none" transform="translate(0.000000, 66.000000)">
-                            <polygon id="Rectangle" fill="#FFFFFF" opacity="0.99000001" points="0.742149418 0 253.997458 0 253.997458 235 0.742149418 235"></polygon>
-                            <g id="controllor" transform="translate(44.000000, 28.000000)">
+                    <g transform="translate(72.000000, 99.000000)">
+                        <g id="pickbox">
+                            <path d="M0.742149418,10.0029514 C0.742149418,4.47847388 5.21836869,0 10.7480613,0 L243.991546,0 C249.517658,0 253.997458,4.47365195 253.997458,10.0029514 L253.997458,300 L0.742149418,300 L0.742149418,10.0029514 Z" id="Rectangle" fill="#666666" opacity="0.99000001"></path>
+                            <rect id="Rectangle-3" fill="#FFFFFF" x="1" y="74" width="253" height="232"></rect>
+                            <g id="controllor" transform="translate(48.000000, 93.000000)">
                                 <g id="Group-7" transform="translate(0.000000, 51.531987)">
                                     <rect id="Rectangle-2" fill="#EEEEEE" x="0" y="5.86994541" width="188.675205" height="9.02356902" rx="4.51178451"></rect>
                                     <circle id="Oval-3" fill="#959595" cx="84" cy="10" r="10"></circle>
@@ -57,12 +58,11 @@
                                 </g>
                             </g>
                         </g>
-                        <rect id="Rectangle-3" fill="#666666" x="1" y="0" width="253" height="67"></rect>
-                        <g id="Group" stroke-width="1" fill="none" transform="translate(77.000000, 250.000000)">
+                        <g id="Group" transform="translate(77.000000, 249.000000)">
                             <rect id="Rectangle-2" fill="#A9DA82" x="0" y="0" width="100" height="33" rx="16.5"></rect>
                             <path d="M43.5142594,2.15548771 L54.5117862,2.15548771 C55.0654369,2.15548771 55.5142594,2.61028101 55.5142594,3.14767834 L55.5142594,23.9300797" id="Path-2" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="translate(49.514259, 13.042784) scale(1, -1) rotate(-45.000000) translate(-49.514259, -13.042784) "></path>
                         </g>
-                        <g id="things" stroke-width="1" fill="none" transform="translate(5.000000, 91.000000)">
+                        <g id="things" transform="translate(9.000000, 91.000000)">
                             <text id="AA" font-family="ChalkboardSE-Regular, Chalkboard SE" font-size="20" font-weight="normal" letter-spacing="0.170000002" fill="#666666">
                                 <tspan x="2.99106629" y="114">A</tspan>
                                 <tspan x="16.0671436" y="114" font-size="27.5" letter-spacing="0.187000006">A</tspan>

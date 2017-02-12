@@ -26,7 +26,6 @@ export default CSSModules(class FontSection extends Component {
             if (err) {
                 console.log('Could not load font: ' + err)
             } else {
-                // Use font here.
                 this.props.uploadFile(acceptedFiles[0].preview)
             }
         })
@@ -38,17 +37,16 @@ export default CSSModules(class FontSection extends Component {
     StyleChangeHandler (val) {
         this.setState({StyleTarget: val})
         this.props.uploadFile(val.url)
+        this.props.setStrokeProps({fontUrl: val.url})
     }
     componentDidMount () {
         this.props.getsFont()
     }
     componentWillReceiveProps (nextProps) {
-        // update selector
         let data = []
         nextProps.Font.AllFont.map((font) => data.push({ 'value': font.id, 'label': font.id }))
         this.setState({options: data})
 
-        // update selector
         let style = []
         nextProps.Font.FontStyle.map((font) => style.push({
             'value': (font.fontStyle + ', ' + font.fontWeight),
@@ -60,11 +58,6 @@ export default CSSModules(class FontSection extends Component {
     render () {
         return (
             <section id="Font" className="main special">
-                {/* <header className="major">
-                    <h2>Step1. Upload Font</h2>
-                    <p>Upload any kind of font you like<br />
-                    or, use our sample font!</p>
-                </header> */}
                 <footer className="major">
                     <ul className="actions wordpicker">
                         <li>

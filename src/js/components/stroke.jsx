@@ -26,7 +26,7 @@ export default CSSModules(class Base extends Component {
             fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff',
             fontSize: 500,
             symbols: [],
-            texts: ['abc', 'def'],
+            texts: ['EDIT', 'ME'],
             width: 1200,
             height: 500,
             lineWidth: 3,
@@ -115,6 +115,7 @@ export default CSSModules(class Base extends Component {
                 if (err) {
                     console.log('Could not load font: ' + err)
                 } else {
+                    console.log('go here')
                     resolve(texts.map((text) => {
                         let pathStroke = font.getPath(text, 0, this.state.height, this.state.fontSize).toPathData(2)
                         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
@@ -134,35 +135,39 @@ export default CSSModules(class Base extends Component {
     }
 
     updatePropsToState (Stroke) {
-        var symbolsPromise
-        if (Stroke.texts === this.state.texts && this.state.symbols.length) {
-            symbolsPromise = new Promise((resolve, reject) => {
-                resolve(this.state.symbols)
-            })
+        console.log('updateStorke')
+        var nextTexts
+        if (Stroke.texts !== undefined) {
+            nextTexts = Stroke.texts
         } else {
-            symbolsPromise = this.getPath(Stroke.texts)
+            nextTexts = this.state.texts
         }
-        symbolsPromise.then((symbols) => {
-            console.log(symbols)
-            this.setState({
-                ...Stroke,
-                symbols: symbols
-            }, () => {
-                let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
-                ctx.lineCap = 'round'
-                ctx.canvas.width = this.state.width
-                ctx.canvas.height = this.state.height
-                ctx.lineWidth = this.state.lineWidth
+        console.log(nextTexts)
+        this.setState({
+            ...Stroke
+        }, () => {
+            this.getPath(nextTexts).then((symbols) => {
+                this.setState({
+                    symbols: symbols,
+                    texts: nextTexts
+                }, () => {
+                    let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
+                    ctx.lineCap = 'round'
+                    ctx.canvas.width = this.state.width
+                    ctx.canvas.height = this.state.height
+                    ctx.lineWidth = this.state.lineWidth
 
-                if (this.state.animation !== undefined) {
-                    this.state.animation.kill()
-                }
-                this.tweenPaths()
+                    if (this.state.animation !== undefined) {
+                        this.state.animation.kill()
+                    }
+                    this.tweenPaths()
+                })
             })
         })
     }
 
     componentDidMount () {
+        console.log('mount stroke')
         this.loop()
         this.updatePropsToState(this.state)
     }
@@ -172,7 +177,6 @@ export default CSSModules(class Base extends Component {
     }
 
     render () {
-        console.log(this.state)
         return (
             <div className="strokeContainer">
                 <canvas className="spincanvas" ref="spinCanvas"></canvas>

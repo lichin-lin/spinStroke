@@ -2,7 +2,8 @@ import { handleActions } from 'redux-actions'
 
 const initialState = {
     AllFont: [],
-    FontStyle: []
+    FontStyle: [],
+    fontUrl: ''
 }
 
 export default handleActions({
@@ -32,7 +33,19 @@ export default handleActions({
             }
         }
     },
-
+    UPLOAD_FILE: {
+        next (state, action) {
+            return {
+                ...state,
+                fontUrl: action.payload
+            }
+        },
+        throw (state, action) {
+            return {
+                ...state
+            }
+        }
+    },
     default: (state, action) => {
         return {
             ...state

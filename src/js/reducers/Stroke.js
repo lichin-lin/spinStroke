@@ -6,7 +6,9 @@ const initialState = {
     lineWidth: 3,
     speed: 3,
     during: 1.5,
-    transitionDuring: 0.5
+    transitionDuring: 0.5,
+    fontSize: 300,
+    fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff'
 }
 
 export default handleActions({
@@ -86,7 +88,19 @@ export default handleActions({
             }
         }
     },
-
+    UPLOAD_FILE: {
+        next (state, action) {
+            return {
+                ...state,
+                fontUrl: action.payload
+            }
+        },
+        throw (state, action) {
+            return {
+                ...state
+            }
+        }
+    },
     default: (state, action) => {
         return {
             ...state

@@ -4,7 +4,7 @@ import Action from 'js/actions'
 
 const mapStateToProps = (state, ownProps) => ({
     Text: state.Text,
-    File: state.File,
+    Font: state.Font,
     Stroke: state.Stroke
 })
 

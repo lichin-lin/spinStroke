@@ -12,7 +12,6 @@ export default CSSModules(class ColorSection extends Component {
         this.toggleSampleColorList = this.toggleSampleColorList.bind(this)
         this.handleChangeComplete = this.handleChangeComplete.bind(this)
         this.cancelColor = this.cancelColor.bind(this)
-        this.colorBoxTextSetting = this.colorBoxTextSetting.bind(this)
         this.state = {
             color: 'white'
         }
@@ -30,21 +29,9 @@ export default CSSModules(class ColorSection extends Component {
         if (id > -1) colorList.splice(id, 1)
         this.props.setStrokeProps({colors: colorList})
     }
-    colorBoxTextSetting () {
-        // check if color box`s bg is dark.
-        console.log(tinycolor(this.state.color).isDark())
-        if (tinycolor(this.state.color).isDark()) {
-            //
-        }
-    }
     render () {
         return (
             <section id="Color" className="main special">
-                {/* <header className="major">
-                    <h2>Step2. Pick Colors</h2>
-                    <p>Pick any colors from the list<br />
-                    or, use some color themes we provide.</p>
-                </header> */}
                 <footer className="major">
                     <ul className="actions">
                         <SketchPicker
@@ -54,7 +41,6 @@ export default CSSModules(class ColorSection extends Component {
                     </ul>
                     <ul className="actions">
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
-                        {/* <li onClick={this.colorBoxTextSetting}><a className="button">Choose Color Themes</a></li> */}
                     </ul>
                     <ul className="actions colorListContain">
                         <div className="colorList">

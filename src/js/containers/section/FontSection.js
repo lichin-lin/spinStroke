@@ -3,14 +3,15 @@ import Components from 'js/components'
 import Action from 'js/actions'
 
 const mapStateToProps = (state, ownProps) => ({
-    File: state.File,
-    Font: state.Font
+    Font: state.Font,
+    Stroke: state.Stroke
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    uploadFile: (data) => dispatch(Action.File.uploadFile(data)),
+    uploadFile: (data) => dispatch(Action.Font.uploadFile(data)),
     getsFont: (data) => dispatch(Action.Font.getsFont(data)),
-    getsFontStyle: (data) => dispatch(Action.Font.getsFontStyle(data))
+    getsFontStyle: (data) => dispatch(Action.Font.getsFontStyle(data)),
+    setStrokeProps: (data) => dispatch(Action.Stroke.setProps(data))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Components.section.FontSection)

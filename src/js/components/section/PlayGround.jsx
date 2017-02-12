@@ -26,9 +26,6 @@ export default CSSModules(class PlayGround extends Component {
                         <Containers.section.ControllSection />
                     </ul>
                 </footer>
-                <footer className="major">
-
-                </footer>
             </section>
         )
     }

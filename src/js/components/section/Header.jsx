@@ -7,7 +7,6 @@ export default class Header extends Component {
     render () {
         return (
             <header id="header" className="alt">
-                {/* <iframe width={500} height={200} src='https://lichin.me/spinStroke/iframe?data=eyJzeW1ib2xzIjpbXSwiY29sb3JzIjpbIiM5REYzQzQiLCIjRUE3MzYyIiwiIzc0Y2VlZSJdLCJsaW5lV2lkdGgiOjMsInNwZWVkIjozLCJkdXJpbmciOjEuNSwidHJhbnNpdGlvbkR1cmluZyI6MC41LCJ0ZXh0cyI6WyJTcGluU3Ryb2tlIl0sImZvbnRTaXplIjoxMDAsImhlaWdodCI6IjIwMCIsIndpZHRoIjoiNTAwIiwiZm9udFVybCI6Imh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9wYWNpZmljby92OS95dW5KdDBSOHRDdk15al9WNHhTamFmZXNaVzJ4T1EteHNOcU80N201NURBLndvZmYifQ=4='></iframe> */}
                 <iframe width={500} height={200} src='https://lichin.me/spinStroke/iframe?data=eyJzeW1ib2xzIjpbXSwiY29sb3JzIjpbIiM3OGJiZTYiLCIjZmY4OTVkIiwiI2Y2ZWI5YSJdLCJsaW5lV2lkdGgiOjMsInNwZWVkIjozLCJkdXJpbmciOjEuNSwidHJhbnNpdGlvbkR1cmluZyI6MC41LCJ0ZXh0cyI6WyJTcGluU3Ryb2tlIl0sImZvbnRTaXplIjoxMDAsImhlaWdodCI6IjIwMCIsIndpZHRoIjoiNTAwIiwiZm9udFVybCI6Imh0dHBzOi8vZm9udHMuZ3N0YXRpYy5jb20vcy9wYWNpZmljby92OS95dW5KdDBSOHRDdk15al9WNHhTamFmZXNaVzJ4T1EteHNOcU80N201NURBLndvZmYifQ=='></iframe>
                 <p style={{
                     color: '#EFEFEF'

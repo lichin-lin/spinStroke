@@ -7,6 +7,7 @@ const initialState = {
     speed: 3,
     during: 1.5,
     transitionDuring: 0.5,
+    texts: ['EDIT', 'ME'],
     fontSize: 300,
     fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff'
 }

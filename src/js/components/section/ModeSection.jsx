@@ -57,16 +57,18 @@ export default CSSModules(class ModeSection extends Component {
             ...Stroke,
             FontSize: Stroke.fontSize,
             AnimationSpeed: Stroke.speed,
-            ChangeRate: Stroke.during
+            ChangeRate: Stroke.during,
+            multiValue: Stroke.texts.map((text) => ({
+                'value': text,
+                'label': text
+            }))
         })
     }
     componentDidMount () {
-        console.log('yoyoyoyooy')
         this.updatePropsToState(this.state)
     }
 
     componentWillReceiveProps (nextProps) {
-        console.log('upupupup')
         this.updatePropsToState(nextProps.Stroke)
     }
     render () {

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Radium from 'radium'
+import CSSModules from 'react-css-modules'
 
 @Radium
-export default class PlayGround extends Component {
+export default CSSModules(class PlayGround extends Component {
     render () {
         return (
             <section id="Color" className="main special">
@@ -22,4 +23,4 @@ export default class PlayGround extends Component {
             </section>
         )
     }
-}
+}, require('./svg.styl'))

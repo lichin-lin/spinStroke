@@ -26,7 +26,7 @@ export default CSSModules(class Base extends Component {
             fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff',
             fontSize: 500,
             symbols: [],
-            texts: ['EDIygT', 'ME'],
+            texts: [],
             width: 1200,
             height: 250,
             lineWidth: 3,

@@ -9,23 +9,25 @@ import CSSModules from 'react-css-modules'
 export default CSSModules(class Base extends Component {
     render () {
         return (
-            <div id="wrapper">
-                <Containers.section.Header />
-                <nav id="nav">
-                    <ul>
-                        <li><a href="#Font" className="active">Upload Font</a></li>
-                        <li><a href="#Color">Pick Color</a></li>
-                        <li><a href="#Mode">Select Mode</a></li>
-                        <li><a href="#Playground">Playground</a></li>
-                    </ul>
-                </nav>
-                <div id="main">
-                    <Containers.intro.FontIntro />
-                    <Containers.intro.ColorIntro />
-                    <Containers.intro.ModeIntro />
-                    <Containers.section.PlayGround />
+            <div className="spinStroke">
+                <div id="wrapper">
+                    <Containers.section.Header />
+                    <nav id="nav">
+                        <ul>
+                            <li><a href="#Font" className="active">Upload Font</a></li>
+                            <li><a href="#Color">Pick Color</a></li>
+                            <li><a href="#Mode">Select Mode</a></li>
+                            <li><a href="#Playground">Playground</a></li>
+                        </ul>
+                    </nav>
+                    <div id="main">
+                        <Containers.intro.FontIntro />
+                        <Containers.intro.ColorIntro />
+                        <Containers.intro.ModeIntro />
+                        <Containers.section.PlayGround />
+                    </div>
+                    <Containers.section.FooterSection />
                 </div>
-                <Containers.section.FooterSection />
             </div>
         )
     }

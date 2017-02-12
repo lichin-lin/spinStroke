@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Containers from 'js/containers'
+import CSSModules from 'react-css-modules'
 
-export default class extends Component {
+export default CSSModules(class extends Component {
     componentDidMount () {
     }
     render () {
@@ -15,4 +16,4 @@ export default class extends Component {
             </div>
         )
     }
-}
+}, require('./Iframe.styl'))

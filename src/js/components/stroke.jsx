@@ -27,8 +27,8 @@ export default CSSModules(class Base extends Component {
             fontSize: 500,
             symbols: [],
             texts: [],
-            width: 1200,
-            height: 250,
+            width: 1500,
+            height: 500,
             lineWidth: 3,
             during: 1.5,
             transitionDuring: 0.5,
@@ -115,9 +115,26 @@ export default CSSModules(class Base extends Component {
                 if (err) {
                     console.log('Could not load font: ' + err)
                 } else {
-                    console.log('go here')
+                    let offsetY = 0
+                    /* get bound */
+                    texts = texts.map((text) => {
+                        let box = font.getPath(text, 0, 0, this.state.fontSize)
+                        let x = box.getBoundingBox().x2 - box.getBoundingBox().x1
+                        let y = box.getBoundingBox().y2 - box.getBoundingBox().y1
+                        offsetY = Math.max(offsetY, y)
+                        return {
+                            x: x,
+                            y: y,
+                            text: text
+                        }
+                    })
+                    /* calc offset */
+                    // let minX = 1000000
+                    // let minY = 1000000
+                    // text.y - miny = val
                     resolve(texts.map((text) => {
-                        let pathStroke = font.getPath(text, 0, (this.state.height - 5), this.state.fontSize).toPathData(2)
+                        console.log(text)
+                        let pathStroke = font.getPath(text.text, 0, offsetY, this.state.fontSize).toPathData(2)
                         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
                         let path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
                         svg.appendChild(path)
@@ -167,7 +184,6 @@ export default CSSModules(class Base extends Component {
     }
 
     componentDidMount () {
-        console.log('mount stroke')
         this.loop()
         this.updatePropsToState(this.state)
     }

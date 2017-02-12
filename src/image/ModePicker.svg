@@ -5,15 +5,15 @@
     <desc>Created with Sketch.</desc>
     <defs>
         <circle id="path-1" cx="199.5" cy="199.5" r="199.5"></circle>
-        <rect id="path-3" x="12" y="0" width="2" height="6" rx="1"></rect>
+        <rect id="path-3" x="19" y="3" width="2" height="6" rx="1"></rect>
         <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="6" fill="white">
             <use xlink:href="#path-3"></use>
         </mask>
-        <rect id="path-5" x="19" y="3" width="2" height="6" rx="1"></rect>
+        <rect id="path-5" x="13.8284271" y="5.82842712" width="2" height="6" rx="1"></rect>
         <mask id="mask-6" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="6" fill="white">
             <use xlink:href="#path-5"></use>
         </mask>
-        <rect id="path-7" x="13.8284271" y="5.82842712" width="2" height="6" rx="1"></rect>
+        <rect id="path-7" x="12.2913623" y="0.118314341" width="2" height="6" rx="1"></rect>
         <mask id="mask-8" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="6" fill="white">
             <use xlink:href="#path-7"></use>
         </mask>
@@ -25,7 +25,7 @@
         <mask id="mask-12" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="6" fill="white">
             <use xlink:href="#path-11"></use>
         </mask>
-        <rect id="path-13" x="2" y="9" width="2" height="6" rx="1"></rect>
+        <rect id="path-13" x="2" y="10" width="2" height="6" rx="1"></rect>
         <mask id="mask-14" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="2" height="6" fill="white">
             <use xlink:href="#path-13"></use>
         </mask>
@@ -68,12 +68,12 @@
                                 <tspan x="16.0671436" y="114" font-size="27.5" letter-spacing="0.187000006">A</tspan>
                             </text>
                             <g id="Group-3" transform="translate(4.000000, 0.000000)" stroke="#666666" stroke-width="2">
-                                <use id="Rectangle-4" mask="url(#mask-4)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" xlink:href="#path-3"></use>
-                                <use id="Rectangle-4" mask="url(#mask-6)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(20.000000, 6.000000) rotate(45.000000) translate(-20.000000, -6.000000) " xlink:href="#path-5"></use>
-                                <use id="Rectangle-4" mask="url(#mask-8)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(14.828427, 8.828427) rotate(28.000000) translate(-14.828427, -8.828427) " xlink:href="#path-7"></use>
+                                <use id="Rectangle-4" mask="url(#mask-4)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(20.000000, 6.000000) rotate(45.000000) translate(-20.000000, -6.000000) " xlink:href="#path-3"></use>
+                                <use id="Rectangle-4" mask="url(#mask-6)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(14.828427, 8.828427) rotate(28.000000) translate(-14.828427, -8.828427) " xlink:href="#path-5"></use>
+                                <use id="Rectangle-4" mask="url(#mask-8)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" xlink:href="#path-7"></use>
                                 <use id="Rectangle-4" mask="url(#mask-10)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(5.828427, 6.000000) scale(1, -1) rotate(45.000000) translate(-5.828427, -6.000000) " xlink:href="#path-9"></use>
                                 <use id="Rectangle-4" mask="url(#mask-12)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(23.000000, 12.000000) rotate(90.000000) translate(-23.000000, -12.000000) " xlink:href="#path-11"></use>
-                                <use id="Rectangle-4" mask="url(#mask-14)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(3.000000, 12.000000) scale(-1, 1) rotate(90.000000) translate(-3.000000, -12.000000) " xlink:href="#path-13"></use>
+                                <use id="Rectangle-4" mask="url(#mask-14)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(3.000000, 13.000000) scale(-1, 1) rotate(90.000000) translate(-3.000000, -13.000000) " xlink:href="#path-13"></use>
                                 <g id="Group-2" transform="translate(0.500000, 0.000000)">
                                     <circle id="Oval-4" cx="12.5" cy="12.5" r="12.5"></circle>
                                     <circle id="Oval-4" cx="12.5" cy="13.5" r="3"></circle>

@@ -87,7 +87,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
-    "build": "NODE_ENV=production webpack -p --progress  --config ./webpack.production.config.js && sw-precache --config=sw-precache-config.js",
+    "build": "NODE_ENV=production webpack -p --progress  --config ./webpack.production.config.js",
     "dev": "NODE_ENV=development node server.js"
   },
   "repository": {

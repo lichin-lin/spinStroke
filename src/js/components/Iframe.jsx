@@ -7,8 +7,6 @@ export default CSSModules(class extends Component {
     }
     render () {
         var obj = JSON.parse(new Buffer(this.props.location.query.data, 'base64').toString('ascii'))
-        console.log("IN Iframe")
-
         return (
             <div>
                 <Containers.stroke {...obj}/>

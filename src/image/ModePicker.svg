@@ -62,26 +62,28 @@
                             <rect id="Rectangle-2" fill="#A9DA82" x="0" y="0" width="100" height="33" rx="16.5"></rect>
                             <path d="M43.5142594,2.15548771 L54.5117862,2.15548771 C55.0654369,2.15548771 55.5142594,2.61028101 55.5142594,3.14767834 L55.5142594,23.9300797" id="Path-2" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" transform="translate(49.514259, 13.042784) scale(1, -1) rotate(-45.000000) translate(-49.514259, -13.042784) "></path>
                         </g>
+                        <g id="things" stroke-width="1" fill="none" transform="translate(5.000000, 91.000000)">
+                            <text id="AA" font-family="ChalkboardSE-Regular, Chalkboard SE" font-size="20" font-weight="normal" letter-spacing="0.170000002" fill="#666666">
+                                <tspan x="2.99106629" y="114">A</tspan>
+                                <tspan x="16.0671436" y="114" font-size="27.5" letter-spacing="0.187000006">A</tspan>
+                            </text>
+                            <g id="Group-3" transform="translate(4.000000, 0.000000)" stroke="#666666" stroke-width="2">
+                                <use id="Rectangle-4" mask="url(#mask-4)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" xlink:href="#path-3"></use>
+                                <use id="Rectangle-4" mask="url(#mask-6)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(20.000000, 6.000000) rotate(45.000000) translate(-20.000000, -6.000000) " xlink:href="#path-5"></use>
+                                <use id="Rectangle-4" mask="url(#mask-8)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(14.828427, 8.828427) rotate(28.000000) translate(-14.828427, -8.828427) " xlink:href="#path-7"></use>
+                                <use id="Rectangle-4" mask="url(#mask-10)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(5.828427, 6.000000) scale(1, -1) rotate(45.000000) translate(-5.828427, -6.000000) " xlink:href="#path-9"></use>
+                                <use id="Rectangle-4" mask="url(#mask-12)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(23.000000, 12.000000) rotate(90.000000) translate(-23.000000, -12.000000) " xlink:href="#path-11"></use>
+                                <use id="Rectangle-4" mask="url(#mask-14)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(3.000000, 12.000000) scale(-1, 1) rotate(90.000000) translate(-3.000000, -12.000000) " xlink:href="#path-13"></use>
+                                <g id="Group-2" transform="translate(0.500000, 0.000000)">
+                                    <circle id="Oval-4" cx="12.5" cy="12.5" r="12.5"></circle>
+                                    <circle id="Oval-4" cx="12.5" cy="13.5" r="3"></circle>
+                                </g>
+                            </g>
+                            <polyline id="Path-3" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="0.967928686 65.1855745 6.32537481 65.1855745 10.656507 53.0638726 13.1886055 71.515958 18.6750911 59.1102679 21.1752372 65.1855745 29.8362037 65.1855745"></polyline>
+                        </g>
                     </g>
                 </g>
             </g>
-            <text id="AA" font-family="ChalkboardSE-Regular, Chalkboard SE" font-size="20" font-weight="normal" letter-spacing="0.170000002" fill="#666666">
-                <tspan x="89.9910663" y="313">A</tspan>
-                <tspan x="103.067144" y="313" font-size="27.5" letter-spacing="0.187000006">A</tspan>
-            </text>
-            <g id="Group-3" transform="translate(91.000000, 199.000000)" stroke="#666666" stroke-width="2">
-                <use id="Rectangle-4" mask="url(#mask-4)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" xlink:href="#path-3"></use>
-                <use id="Rectangle-4" mask="url(#mask-6)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(20.000000, 6.000000) rotate(45.000000) translate(-20.000000, -6.000000) " xlink:href="#path-5"></use>
-                <use id="Rectangle-4" mask="url(#mask-8)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(14.828427, 8.828427) rotate(28.000000) translate(-14.828427, -8.828427) " xlink:href="#path-7"></use>
-                <use id="Rectangle-4" mask="url(#mask-10)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(5.828427, 6.000000) scale(1, -1) rotate(45.000000) translate(-5.828427, -6.000000) " xlink:href="#path-9"></use>
-                <use id="Rectangle-4" mask="url(#mask-12)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(23.000000, 12.000000) rotate(90.000000) translate(-23.000000, -12.000000) " xlink:href="#path-11"></use>
-                <use id="Rectangle-4" mask="url(#mask-14)" stroke-linecap="round" stroke-linejoin="round" fill="#D8D8D8" transform="translate(3.000000, 12.000000) scale(-1, 1) rotate(90.000000) translate(-3.000000, -12.000000) " xlink:href="#path-13"></use>
-                <g id="Group-2" transform="translate(0.500000, 0.000000)">
-                    <circle id="Oval-4" cx="12.5" cy="12.5" r="12.5"></circle>
-                    <circle id="Oval-4" cx="12.5" cy="13.5" r="3"></circle>
-                </g>
-            </g>
-            <polyline id="Path-3" stroke="#666666" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" points="87.9679287 264.185575 93.3253748 264.185575 97.656507 252.063873 100.188605 270.515958 105.675091 258.110268 108.175237 264.185575 116.836204 264.185575"></polyline>
         </g>
     </g>
 </svg>

@@ -2,7 +2,7 @@ export default {
     gets: () => {
         return new Promise(
             (resolve, reject) => {
-                const url = 'http://font.nctu.me/api/fonts'
+                const url = 'https://font.nctu.me/api/fonts'
                 var xhr = new XMLHttpRequest()
                 xhr.open('GET', url)
                 xhr.send()
@@ -16,7 +16,7 @@ export default {
         console.log('get font style from => ', val.label)
         return new Promise(
             (resolve, reject) => {
-                const url = 'http://font.nctu.me/api/fonts/' + val.label
+                const url = 'https://font.nctu.me/api/fonts/' + val.label
                 var xhr = new XMLHttpRequest()
                 xhr.open('GET', url)
                 xhr.send()

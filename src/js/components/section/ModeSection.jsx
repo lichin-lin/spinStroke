@@ -12,6 +12,8 @@ export default CSSModules(class ModeSection extends Component {
         // function
         this.handleChange = this.handleChange.bind(this)
         this.handleChangeSize = this.handleChangeSize.bind(this)
+        this.handleChangeWidth = this.handleChangeWidth.bind(this)
+        this.handleChangeHeight = this.handleChangeHeight.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.InputChangeHandler = this.InputChangeHandler.bind(this)
         this.updatePropsToState = this.updatePropsToState.bind(this)
@@ -26,7 +28,9 @@ export default CSSModules(class ModeSection extends Component {
             multiValue: [],
             FontSize: 300,
             AnimationSpeed: 3,
-            ChangeRate: 1.5
+            ChangeRate: 1.5,
+            width: 1000,
+            height: 500
         }
     }
     handleChange (event) {
@@ -35,6 +39,12 @@ export default CSSModules(class ModeSection extends Component {
     }
     handleChangeSize (event) {
         this.setState({size: event.target.value})
+    }
+    handleChangeWidth (event) {
+        this.setState({width: event.target.value})
+    }
+    handleChangeHeight (event) {
+        this.setState({height: event.target.value})
     }
     InputChangeHandler (val) {
         console.log(val)
@@ -46,6 +56,8 @@ export default CSSModules(class ModeSection extends Component {
         console.log('submit', size)
         this.props.setStrokeProps({
             fontSize: size,
+            width: this.state.width,
+            height: this.state.height,
             speed: this.state.AnimationSpeed,
             during: this.state.ChangeRate,
             texts: textList
@@ -58,6 +70,8 @@ export default CSSModules(class ModeSection extends Component {
             FontSize: Stroke.fontSize,
             AnimationSpeed: Stroke.speed,
             ChangeRate: Stroke.during,
+            width: Stroke.width,
+            height: Stroke.height,
             multiValue: Stroke.texts.map((text) => ({
                 'value': text,
                 'label': text
@@ -85,6 +99,10 @@ export default CSSModules(class ModeSection extends Component {
                 </ul>
                 <ul className="actions slideControll">
                     <li>
+                        <p>width:</p>
+                        <input type="text" value={this.state.width} onChange={this.handleChangeWidth}/>
+                        <p>height:</p>
+                        <input type="text" value={this.state.height} onChange={this.handleChangeHeight}/>
                         <p>Input:</p>
                         <Creatable
                             multi={true}

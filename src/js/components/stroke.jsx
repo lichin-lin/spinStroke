@@ -26,9 +26,9 @@ export default CSSModules(class Base extends Component {
             fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff',
             fontSize: 500,
             symbols: [],
-            texts: ['EDIT', 'ME'],
+            texts: ['EDIygT', 'ME'],
             width: 1200,
-            height: 500,
+            height: 250,
             lineWidth: 3,
             during: 1.5,
             transitionDuring: 0.5,
@@ -117,7 +117,7 @@ export default CSSModules(class Base extends Component {
                 } else {
                     console.log('go here')
                     resolve(texts.map((text) => {
-                        let pathStroke = font.getPath(text, 0, this.state.height, this.state.fontSize).toPathData(2)
+                        let pathStroke = font.getPath(text, 0, (this.state.height - 5), this.state.fontSize).toPathData(2)
                         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
                         let path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
                         svg.appendChild(path)

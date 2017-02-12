@@ -26,6 +26,7 @@
     "react-router-redux": "^4.0.6",
     "react-select": "^1.0.0-rc.3",
     "react-slider": "^0.7.0",
+    "react-svg": "^2.1.18",
     "react-tabs": "^0.8.2",
     "react-toolbox": "^2.0.0-beta.6",
     "redux": "^3.6.0",

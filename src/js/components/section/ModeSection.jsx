@@ -66,10 +66,17 @@ export default CSSModules(class ModeSection extends Component {
     }
     componentDidMount () {
         this.updatePropsToState(this.state)
+        var iframeURL = 'https://lichin.me/spinStroke/dist/iframe?data=' + (new Buffer(JSON.stringify(this.props.Stroke)).toString('base64'))
+        this.setState({
+            iframeURL: iframeURL
+        })
     }
 
     componentWillReceiveProps (nextProps) {
-        this.updatePropsToState(nextProps.Stroke)
+        var iframeURL = 'https://lichin.me/spinStroke/dist/iframe?data=' + (new Buffer(JSON.stringify(nextProps.Stroke)).toString('base64'))
+        this.setState({
+            iframeURL: iframeURL
+        })
     }
     render () {
         return (
@@ -117,6 +124,7 @@ export default CSSModules(class ModeSection extends Component {
                 <ul className="actions">
                     <li onClick={this.handleSubmit}><a className="button special">update</a></li>
                 </ul>
+                <input type="text" value={this.state.iframeURL} />
             </section>
         )
     }

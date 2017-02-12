@@ -10,13 +10,13 @@ export default class Root extends Component {
     render () {
         return (
             <Router history={history}>
-                <Route path="/" component={Containers.App} >
+                <Route path="/spinStroke/" component={Containers.App} >
                     <IndexRoute component={Containers.Base} />
                     <Route path="login" component={Containers.Login} />
                     <Route path="stroke" component={Containers.stroke} />
                     <Route path="upload" component={Containers.Upload} />
                 </Route>
-                <Route path="/iframe" component={Containers.Iframe} />
+                <Route path="/spinStroke/iframe" component={Containers.Iframe} />
             </Router>
 
         )

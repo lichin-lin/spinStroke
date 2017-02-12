@@ -18,7 +18,6 @@ export default CSSModules(class ModeSection extends Component {
         this.InputChangeHandler = this.InputChangeHandler.bind(this)
         this.updatePropsToState = this.updatePropsToState.bind(this)
         this.state = {
-            ...props.Stroke,
             text: '',
             textArray: [
                 { value: 'select', label: 'select' },
@@ -26,11 +25,12 @@ export default CSSModules(class ModeSection extends Component {
                 { value: 'type', label: 'type' }
             ],
             multiValue: [],
-            FontSize: 300,
+            FontSize: 100,
             AnimationSpeed: 3,
             ChangeRate: 1.5,
-            width: 1000,
-            height: 500
+            width: 500,
+            height: 200,
+            ...props.Stroke
         }
     }
     handleChange (event) {

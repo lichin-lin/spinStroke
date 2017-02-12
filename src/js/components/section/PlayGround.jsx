@@ -6,6 +6,7 @@ import CSSModules from 'react-css-modules'
 @Radium
 export default CSSModules(class PlayGround extends Component {
     render () {
+        console.log(this.props)
         return (
             <section id="Playground" className="main special">
                 <header className="major">
@@ -17,11 +18,21 @@ export default CSSModules(class PlayGround extends Component {
                         style={{
                             border: '1px solid #ddd',
                             borderRadius: '5px',
-                            overflow: 'scroll'
+                            overflow: 'scroll',
+                            display: 'flex',
+                            alignItems: 'center'
                         }}
                     className="actions board"
                     >
-                        <Containers.stroke />
+                        <div style={{
+                            border: '1px solid #ddd',
+                            width: this.props.Stroke.width,
+                            height: this.props.Stroke.height,
+                            display: 'flex',
+                            alignItems: 'center'
+                        }}>
+                            <Containers.stroke />
+                        </div>
                     </ul>
                     <ul className="actions controller">
                         <Containers.section.ControllSection />

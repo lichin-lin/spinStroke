@@ -19,6 +19,8 @@
     "react-css-modules": "^4.0.3",
     "react-dom": "^15.4.1",
     "react-dropzone": "^3.10.0",
+    "react-github-button": "^0.1.10",
+    "react-github-fork-ribbon": "^0.4.4",
     "react-gsap-enhancer": "^0.3.0",
     "react-icons": "^2.2.3",
     "react-input-range": "^1.0.2",

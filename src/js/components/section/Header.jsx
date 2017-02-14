@@ -12,7 +12,7 @@ export default class Header extends Component {
                 <p style={{
                     color: '#EFEFEF'
                 }}
-                >A spining stroke animation with morphing effect!<br />
+                >Spinning stroke animation with morphing effect!<br />
                 built by <a href="https://github.com/Tocknicsu">@tocknicsu</a> and <a href="https://github.com/lichin-lin">@lichin-lin</a></p>
             <div className="Github">
                 <GitHubButton type="stargazers" size="large" namespace="lichin-lin" repo="spinStroke" />

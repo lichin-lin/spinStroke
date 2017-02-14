@@ -166,7 +166,8 @@ export default CSSModules(class Base extends Component {
             this.getPath(nextTexts).then((symbols) => {
                 this.setState({
                     symbols: symbols,
-                    texts: nextTexts
+                    texts: nextTexts,
+                    symbolCounter: 0
                 }, () => {
                     let ctx = findDOMNode(this.refs.spinCanvas).getContext('2d')
                     ctx.lineCap = 'round'

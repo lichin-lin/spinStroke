@@ -29,7 +29,7 @@ export default CSSModules(class Base extends Component {
             texts: ['SpinStroke'],
             width: 500,
             height: 200,
-            lineWidth: 3,
+            lineWidth: 2,
             during: 1.5,
             transitionDuring: 0.5,
             ...props.Stroke

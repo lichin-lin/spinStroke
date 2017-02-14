@@ -10,12 +10,14 @@ export default CSSModules(class ModeSection extends Component {
     constructor (props) {
         super(props)
         // function
-        this.handleChange = this.handleChange.bind(this)
-        this.handleChangeSize = this.handleChangeSize.bind(this)
-        this.handleChangeWidth = this.handleChangeWidth.bind(this)
         this.handleChangeHeight = this.handleChangeHeight.bind(this)
+        this.handleChangeWidth = this.handleChangeWidth.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
-        this.InputChangeHandler = this.InputChangeHandler.bind(this)
+        this.handleChangeInput = this.handleChangeInput.bind(this)
+        this.handleChangeFontSize = this.handleChangeFontSize.bind(this)
+        this.handleChangeLineWidth = this.handleChangeLineWidth.bind(this)
+        this.handleChangeSpeed = this.handleChangeSpeed.bind(this)
+        this.handleChangeRate = this.handleChangeRate.bind(this)
         this.updatePropsToState = this.updatePropsToState.bind(this)
         this.state = {
             text: '',
@@ -28,39 +30,51 @@ export default CSSModules(class ModeSection extends Component {
             FontSize: 100,
             AnimationSpeed: 3,
             ChangeRate: 1.5,
+            lineWidth: 2,
             width: 500,
             height: 200,
             ...props.Stroke
         }
     }
-    handleChange (event) {
-        this.setState({text: event.target.value})
-        // this.props.modifyText(event.target.value)
-    }
-    handleChangeSize (event) {
-        this.setState({size: event.target.value})
-    }
     handleChangeWidth (event) {
         this.setState({width: event.target.value})
+        this.props.setStrokeProps({width: event.target.value})
     }
     handleChangeHeight (event) {
         this.setState({height: event.target.value})
+        this.props.setStrokeProps({height: event.target.value})
     }
-    InputChangeHandler (val) {
+    handleChangeInput (val) {
+        this.setState({multiValue: val})
+        this.props.setStrokeProps({texts: val.map((text) => (text.label))})
+    }
+    handleChangeFontSize (val) {
+        this.setState({FontSize: val})
+        this.props.setStrokeProps({fontSize: val})
+    }
+    handleChangeSpeed (val) {
+        this.setState({AnimationSpeed: val})
+        this.props.setStrokeProps({speed: val})
+    }
+    handleChangeRate (val) {
+        this.setState({ChangeRate: val})
+        this.props.setStrokeProps({during: val})
+    }
+    handleChangeLineWidth (val) {
         console.log(val)
-        this.setState({ multiValue: val })
+        this.setState({lineWidth: val})
+        this.props.setStrokeProps({lineWidth: val})
     }
+
     handleSubmit () {
-        let size = this.state.FontSize
-        let textList = this.state.multiValue.map((text) => (text.label))
-        console.log('submit', size)
         this.props.setStrokeProps({
-            fontSize: size,
+            fontSize: this.state.FontSize,
+            lineWidth: this.state.lineWidth,
             width: this.state.width,
             height: this.state.height,
             speed: this.state.AnimationSpeed,
             during: this.state.ChangeRate,
-            texts: textList
+            texts: this.state.multiValue.map((text) => (text.label))
         })
     }
     updatePropsToState (Stroke) {
@@ -70,6 +84,7 @@ export default CSSModules(class ModeSection extends Component {
             FontSize: Stroke.fontSize,
             AnimationSpeed: Stroke.speed,
             ChangeRate: Stroke.during,
+            lineWidth: this.state.lineWidth,
             width: Stroke.width,
             height: Stroke.height,
             multiValue: Stroke.texts.map((text) => ({
@@ -107,7 +122,7 @@ export default CSSModules(class ModeSection extends Component {
                         <Creatable
                             multi={true}
                             options={this.state.textArray}
-                            onChange={this.InputChangeHandler}
+                            onChange={this.handleChangeInput}
                             value={this.state.multiValue}
                         />
                     </li>
@@ -118,7 +133,26 @@ export default CSSModules(class ModeSection extends Component {
                           minValue={100}
                           step={10}
                           value={this.state.FontSize}
-                          onChange={FontSize => this.setState({FontSize: FontSize})} />
+                          onChange={this.handleChangeFontSize} />
+                    </li>
+                    <li>
+                        <p>LineWidth:</p>
+                        {/* <Debounce period={200} value={this.state.lineWidth}></Debounce> */}
+                        <InputRange
+                          maxValue={10}
+                          minValue={1}
+                          step={1}
+                          value={this.state.lineWidth}
+                          onChange={this.handleChangeLineWidth} />
+                    </li>
+                    <li>
+                        <p>Change Period:</p>
+                        <InputRange
+                          maxValue={10}
+                          minValue={1}
+                          step={0.5}
+                          value={this.state.ChangeRate}
+                          onChange={this.handleChangeRate} />
                     </li>
                     <li>
                         <p>Animation Speed:</p>
@@ -127,24 +161,15 @@ export default CSSModules(class ModeSection extends Component {
                           minValue={1}
                           step={0.5}
                           value={this.state.AnimationSpeed}
-                          onChange={AnimationSpeed => this.setState({AnimationSpeed: AnimationSpeed})} />
-                    </li>
-                    <li>
-                        <p>Change Rate:</p>
-                        <InputRange
-                          maxValue={10}
-                          minValue={1}
-                          step={0.5}
-                          value={this.state.ChangeRate}
-                          onChange={ChangeRate => this.setState({ChangeRate: ChangeRate})} />
+                          onChange={this.handleChangeSpeed} />
                     </li>
                 </ul>
-                <ul className="actions">
+                {/* <ul className="actions">
                     <li onClick={this.handleSubmit}><a className="button special">update</a></li>
-                </ul>
+                </ul> */}
                 <ul className="actions slideControll">
                     <li>
-                        <p>Iframe link:</p>
+                        <p>Animation url:</p>
                         <input type="text" value={this.state.iframeURL} />
                     </li>
                 </ul>

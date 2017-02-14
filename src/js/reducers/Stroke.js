@@ -3,12 +3,12 @@ import { handleActions } from 'redux-actions'
 const initialState = {
     symbols: [],
     colors: ['#9DF3C4', '#EA7362', '#74ceee', '#FFCA61'],
-    lineWidth: 3,
-    speed: 3,
-    during: 1.5,
+    lineWidth: 2,
+    speed: 2,
+    during: 2,
     transitionDuring: 0.5,
     texts: ['EDIT', 'Me', '!'],
-    fontSize: 150,
+    fontSize: 200,
     height: 125,
     width: 325,
     fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff'

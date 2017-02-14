@@ -12,7 +12,7 @@ export default class FooterSection extends Component {
                     </p>
                     <ul className="actions footerLi">
                         <li><a href="https://codepen.io/lichin-lin/pen/NdpaLa" target="_blank" className="button">Codepen example</a></li>
-                        <li><a href="#" className="button">Blog post</a></li>
+                        <li><a href="https://blog.lichin.me/spinstroke-make-your-favorite-font-dance-1-3c64949a2bd7" target="_blank" className="button">Blog post</a></li>
                     </ul>
                 </section>
                 <p className="copyright">&copy; Untitled. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>

@@ -9,7 +9,9 @@
     #header {
         @include padding(5em, 5em, (0, 0, -2em, 0));
         text-align: center;
-
+        display: flex;
+        flex-direction: column;
+        align-content: center;
         h1 {
             margin: 0 0 (_size(element-margin) * 0.125) 0;
             color: _palette(invert, fg-bold);

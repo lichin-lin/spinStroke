@@ -6,6 +6,7 @@ import tinycolor from 'tinycolor2'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
 const SortableItem = SortableElement(({value, index, onRemove}) => {
+    console.log(index)
     return (
         <li
             style={{
@@ -18,21 +19,31 @@ const SortableItem = SortableElement(({value, index, onRemove}) => {
                     color: (() => (tinycolor(value).isDark() ? 'white' : 'black'))(),
                     textAlign: 'center',
                     fontSize: '0.85em',
-                    fontWeight: 'bold'
+                    fontWeight: 'bold',
+                    display: 'flex',
+                    padding: '10px 0',
+                    position: 'relative',
+                    justifyContent: 'space-around',
+                    alignItems: 'center'
                 }}
             >
                 <p>{value}</p>
-                <input type="button" value="x" onClick={() => onRemove(index)}/>
+                <input
+                    type="button"
+                    value="x"
+                    onClick={() => onRemove(index)}
+                />
             </div>
         </li>
     )
 })
 const SortableList = SortableContainer(({items, onRemove}) => {
+    console.log(items)
     return (
         <ul className="colorList">
             {items.map((value, index) =>
                 <SortableItem
-                    key={`item-${value}`}
+                    key={`item-${index}`}
                     index={index}
                     value={value}
                     onRemove={onRemove}
@@ -65,6 +76,7 @@ export default CSSModules(class ColorSection extends Component {
         this.setState({ color: color.hex })
     }
     cancelColor (index) {
+        console.log('QQ', index)
         let colorList = this.props.Stroke.colors
         colorList.splice(index, 1)
         this.props.setStrokeProps({colors: colorList})

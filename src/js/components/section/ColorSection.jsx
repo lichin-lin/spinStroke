@@ -5,15 +5,15 @@ import { SketchPicker } from 'react-color'
 import tinycolor from 'tinycolor2'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
-const SortableItem = SortableElement(({value}) => {
+const SortableItem = SortableElement(({value, index, onRemove}) => {
     return (
         <li
             style={{
                 listStyle: 'none'
             }}
         >
-            <div className="colorBox" onClick={() => { console.log('this :', this) }}
-                style= {{
+            <div className="colorBox"
+                style={{
                     background: value,
                     color: (() => (tinycolor(value).isDark() ? 'white' : 'black'))(),
                     textAlign: 'center',
@@ -22,18 +22,20 @@ const SortableItem = SortableElement(({value}) => {
                 }}
             >
                 <p>{value}</p>
+                <input type="button" value="x" onClick={() => onRemove(index)}/>
             </div>
         </li>
     )
 })
-const SortableList = SortableContainer(({items}) => {
+const SortableList = SortableContainer(({items, onRemove}) => {
     return (
         <ul className="colorList">
             {items.map((value, index) =>
                 <SortableItem
-                    key={`item-${index}`}
+                    key={`item-${value}`}
                     index={index}
                     value={value}
+                    onRemove={onRemove}
                 />
             )}
         </ul>
@@ -62,11 +64,10 @@ export default CSSModules(class ColorSection extends Component {
     handleChangeComplete = (color) => {
         this.setState({ color: color.hex })
     }
-    cancelColor () {
-        console.log('id: ', this)
-        // let colorList = this.props.Stroke.colors
-        // if (id > -1) colorList.splice(id, 1)
-        // this.props.setStrokeProps({colors: colorList})
+    cancelColor (index) {
+        let colorList = this.props.Stroke.colors
+        colorList.splice(index, 1)
+        this.props.setStrokeProps({colors: colorList})
     }
     onSortEnd = ({oldIndex, newIndex}) => {
         this.props.setStrokeProps({colors: arrayMove(this.props.Stroke.colors, oldIndex, newIndex)})
@@ -102,7 +103,11 @@ export default CSSModules(class ColorSection extends Component {
                                 )
                             }
                         </div> */}
-                        <SortableList helperClass='sortableHelper' items={this.props.Stroke.colors} onSortEnd={this.onSortEnd} />
+                        <SortableList
+                            helperClass='sortableHelper'
+                            items={this.props.Stroke.colors}
+                            onRemove={(index) => this.cancelColor(index)}
+                            onSortEnd={this.onSortEnd} />
                         <div style={{
                             fontStyle: 'italic',
                             wordSpacing: '2px'

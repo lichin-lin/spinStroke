@@ -133,7 +133,7 @@ export default CSSModules(class Base extends Component {
                     // let minY = 1000000
                     // text.y - miny = val
                     resolve(texts.map((text) => {
-                        console.log(text)
+                        // console.log(text)
                         let pathStroke = font.getPath(text.text, 0, offsetY, this.state.fontSize).toPathData(2)
                         let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
                         let path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
@@ -159,7 +159,7 @@ export default CSSModules(class Base extends Component {
         } else {
             nextTexts = this.state.texts
         }
-        console.log(nextTexts)
+        // console.log(nextTexts)
         this.setState({
             ...Stroke
         }, () => {

@@ -6,7 +6,6 @@ import CSSModules from 'react-css-modules'
 @Radium
 export default CSSModules(class PlayGround extends Component {
     render () {
-        console.log(this.props)
         return (
             <section id="Playground" className="main special">
                 <header className="major">

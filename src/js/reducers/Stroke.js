@@ -7,11 +7,11 @@ const initialState = {
     speed: 2,
     during: 2,
     transitionDuring: 0.5,
-    texts: ['EDIT', 'Me', '!'],
+    texts: ['edit', 'here'],
     fontSize: 200,
-    height: 125,
-    width: 325,
-    fontUrl: 'https://fonts.gstatic.com/s/roboto/v15/vzIUHo9z-oJ4WgkpPOtg1_esZW2xOQ-xsNqO47m55DA.woff'
+    height: 200,
+    width: 500,
+    fontUrl: 'https://fonts.gstatic.com/s/pacifico/v9/yunJt0R8tCvMyj_V4xSjafesZW2xOQ-xsNqO47m55DA.woff'
 }
 
 export default handleActions({

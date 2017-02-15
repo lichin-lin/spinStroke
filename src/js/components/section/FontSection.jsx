@@ -11,13 +11,15 @@ export default CSSModules(class FontSection extends Component {
         this.uploadFont = this.uploadFont.bind(this)
         this.FontChangeHandler = this.FontChangeHandler.bind(this)
         this.StyleChangeHandler = this.StyleChangeHandler.bind(this)
+        this.uploadHandler = this.uploadHandler.bind(this)
         this.state = {
             options: [
             ],
             StyleOptions: [
             ],
             target: 'Roboto',
-            StyleTarget: ''
+            StyleTarget: '',
+            uploadUrl: ''
         }
     }
     uploadFont (acceptedFiles, rejectedFiles) {
@@ -38,6 +40,11 @@ export default CSSModules(class FontSection extends Component {
         this.setState({StyleTarget: val})
         this.props.uploadFile(val.url)
         this.props.setStrokeProps({fontUrl: val.url})
+    }
+    uploadHandler (event) {
+        this.setState({uploadUrl: event.target.value})
+        this.props.uploadFile(event.target.value)
+        this.props.setStrokeProps({fontUrl: event.target.value})
     }
     componentDidMount () {
         this.props.getsFont()
@@ -79,6 +86,21 @@ export default CSSModules(class FontSection extends Component {
                                 options={this.state.StyleOptions}
                                 onChange={this.StyleChangeHandler}
                             />
+                        </li>
+                        <span style={{
+                            margin: '25px 0',
+                            width: '100%',
+                            height: '1px',
+                            boxShadow: '1px 1px 0px #dddddd'
+                        }}></span>
+                        <li>
+                            <p>upload font url( <i>.ttf, .woff</i> )</p>
+                            <input type="text" value={this.state.uploadUrl} onChange={this.uploadHandler}/>
+                            <p style={{
+                                fontSize: '0.85em',
+                                fontStyle: 'italic',
+                                color: '#AAA'
+                            }}>* file type .woff2 was not supported</p>
                         </li>
                     </ul>
 

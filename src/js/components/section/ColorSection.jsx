@@ -6,7 +6,7 @@ import tinycolor from 'tinycolor2'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
 const SortableItem = SortableElement(({value, index, onRemove}) => {
-    console.log(index)
+    // console.log(value, index, onRemove)
     return (
         <li
             style={{
@@ -38,7 +38,7 @@ const SortableItem = SortableElement(({value, index, onRemove}) => {
     )
 })
 const SortableList = SortableContainer(({items, onRemove}) => {
-    console.log(items)
+    // console.log(items, onRemove)
     return (
         <ul className="colorList">
             {items.map((value, index) =>

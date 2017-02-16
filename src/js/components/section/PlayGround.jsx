@@ -29,7 +29,7 @@ export default CSSModules(class PlayGround extends Component {
                             height: this.props.Stroke.height,
                             display: 'flex',
                             alignItems: 'center',
-                            overflow: 'hidden',
+                            overflow: 'scroll',
                             boxSizing: 'content-box'
                         }}>
                             <Containers.stroke />

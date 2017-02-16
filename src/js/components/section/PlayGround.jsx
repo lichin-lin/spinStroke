@@ -17,7 +17,6 @@ export default CSSModules(class PlayGround extends Component {
                         style={{
                             border: '1px solid #ddd',
                             borderRadius: '5px',
-                            overflow: 'scroll',
                             display: 'flex',
                             alignItems: 'center'
                         }}
@@ -28,9 +27,8 @@ export default CSSModules(class PlayGround extends Component {
                             width: this.props.Stroke.width,
                             height: this.props.Stroke.height,
                             display: 'flex',
-                            alignItems: 'center',
-                            overflow: 'scroll',
-                            boxSizing: 'content-box'
+                            overflow: 'hidden'
+                            // boxSizing: 'content-box'
                         }}>
                             <Containers.stroke />
                         </div>

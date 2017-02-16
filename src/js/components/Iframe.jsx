@@ -6,7 +6,7 @@ export default CSSModules(class extends Component {
     componentDidMount () {
     }
     render () {
-        var obj = JSON.parse(new Buffer(this.props.location.query.data, 'base64').toString('ascii'))
+        var obj = JSON.parse(new Buffer(this.props.location.query.data, 'base64').toString('utf8'))
         return (
             <div>
                 <Containers.stroke {...obj}/>

@@ -44,6 +44,7 @@ const SortableList = SortableContainer(({items, onRemove}) => {
                     key={`item-${index}`}
                     dataIndex={index}
                     value={value}
+                    index={index}
                     onRemove={onRemove}
                 />
             )}

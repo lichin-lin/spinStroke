@@ -5,8 +5,7 @@ import { SketchPicker } from 'react-color'
 import tinycolor from 'tinycolor2'
 import {SortableContainer, SortableElement, arrayMove} from 'react-sortable-hoc'
 
-const SortableItem = SortableElement(({value, index, onRemove}) => {
-    // console.log(value, index, onRemove)
+const SortableItem = SortableElement(({value, dataIndex, onRemove}) => {
     return (
         <li
             style={{
@@ -31,20 +30,19 @@ const SortableItem = SortableElement(({value, index, onRemove}) => {
                 <input
                     type="button"
                     value="x"
-                    onClick={() => onRemove(index)}
+                    onClick={() => onRemove(dataIndex)}
                 />
             </div>
         </li>
     )
 })
 const SortableList = SortableContainer(({items, onRemove}) => {
-    // console.log(items, onRemove)
     return (
         <ul className="colorList">
             {items.map((value, index) =>
                 <SortableItem
                     key={`item-${index}`}
-                    index={index}
+                    dataIndex={index}
                     value={value}
                     onRemove={onRemove}
                 />
@@ -98,23 +96,6 @@ export default CSSModules(class ColorSection extends Component {
                         <li onClick={this.toggleColorList}><a className="button special">Add Colors</a></li>
                     </ul>
                     <ul className="actions colorListContain">
-                        {/* <div className="colorList">
-                            {
-                                this.props.Stroke.colors.map((ele, id) => (
-                                        <li key={id} >
-                                            <div className="colorBox" onClick={() => { this.cancelColor(id) } }
-                                                style= {{
-                                                    background: ele,
-                                                    color: (() => (tinycolor(ele).isDark() ? 'white' : 'black'))()
-                                                }}
-                                            >
-                                                <p>{ele}</p>
-                                            </div>
-                                        </li>
-                                    )
-                                )
-                            }
-                        </div> */}
                         <SortableList
                             helperClass='sortableHelper'
                             items={this.props.Stroke.colors}

@@ -130,7 +130,7 @@ export default CSSModules(class ModeSection extends Component {
                         <p>FontSize:</p>
                         <InputRange
                           maxValue={1000}
-                          minValue={100}
+                          minValue={10}
                           step={10}
                           value={this.state.FontSize}
                           onChange={this.handleChangeFontSize} />

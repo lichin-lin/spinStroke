@@ -1,36 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Single Page Apps for GitHub Pages</title>
-        <script type="text/javascript">
-            // Single Page Apps for GitHub Pages
-            // https://github.com/rafrex/spa-github-pages
-            // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
-            // ----------------------------------------------------------------------
-            // This script takes the current url and converts the path and query
-            // string into just a query string, and then redirects the browser
-            // to the new url with only a query string and hash fragment,
-            // e.g. http://www.foo.tld/one/two?a=b&c=d#qwe, becomes
-            // http://www.foo.tld/?p=/one/two&q=a=b~and~c=d#qwe
-            // Note: this 404.html file must be at least 512 bytes for it to work
-            // with Internet Explorer (it is currently > 512 bytes)
-            // If you're creating a Project Pages site and NOT using a custom domain,
-            // then set pathPrefix = true. This way the repo name will remain in the path:
-            // https://username.github.io/repo-name/one/two?a=b&c=d#qwe becomes
-            // https://username.github.io/repo-name/?p=/one/two&q=a=b~and~c=d#qwe
-            // Otherwise, leave pathPrefix as false.
-            var pathPrefix = true;
-            var l = window.location;
-            l.replace(
-                l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-                    l.pathname.split('/').slice(0, 2 * pathPrefix).join('/') + '/?p=/' +
-                    l.pathname.slice(1).split('/').slice(pathPrefix).join('/').replace(/&/g, '~and~') +
-                    (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
-                    l.hash
-            );
-        </script>
-    </head>
-    <body>
-    </body>
-</html>
+<!DOCTYPE html><html lang=en><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><title>SpinStroke | build your own word animation</title><link rel=apple-touch-icon href=https://lichin.me/img/spinstroke/favicon.png><link rel="shortcut icon" href=https://lichin.me/img/spinstroke/favicon.png><meta name=description content="build your own word animation with morphing effect!"><meta name=twitter:card content=SpinStroke><meta name=twitter:site content=https://lichin.me/spinStroke/ ><meta name=twitter:title content="SpinStroke | build your own word animation"><meta name=twitter:description content="build your own word animation with morphing effect!"><meta name=twitter:image content=https://lichin.me/img/spinstroke/s1.png><meta property=og:title content="SpinStroke | build your own word animation"><meta property=og:type content=website><meta property=og:url content=https://lichin.me/spinStroke/ ><meta property=og:image content=https://lichin.me/img/spinstroke/s1.png><meta property=og:description content="build your own word animation with morphing effect!"><meta property=og:site_name content=SpinStroke><meta property=fb:admins content=100000377206811><link href=styles.99617b54aa21600fa952.css rel=stylesheet></head><script type=text/javascript>// Single Page Apps for GitHub Pages
+        // https://github.com/rafrex/spa-github-pages
+        // Copyright (c) 2016 Rafael Pedicini, licensed under the MIT License
+        // ----------------------------------------------------------------------
+        // This script checks to see if a redirect is present in the query string
+        // and converts it back into the correct url and adds it to the
+        // browser's history using window.history.replaceState(...),
+        // which won't cause the browser to attempt to load the new url.
+        // When the single page app is loaded further down in this file,
+        // the correct url will be waiting in the browser's history for
+        // the single page app to route accordingly.
+        (function(l) {
+            if (l.search) {
+                var q = {};
+                l.search.slice(1).split('&').forEach(function(v) {
+                    var a = v.split('=');
+                    q[a[0]] = a.slice(1).join('=').replace(/~and~/g, '&');
+                });
+                if (q.p !== undefined) {
+                    window.history.replaceState(null, null,
+                        l.pathname.slice(0, -1) + (q.p || '') +
+                        (q.q ? ('?' + q.q) : '') +
+                        l.hash
+                    );
+                }
+            }
+        }(window.location))</script><script>(function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-74093364-9', 'auto');
+        ga('send', 'pageview');</script><body><div id=app></div><script type=text/javascript src=vendor.768939a3a5128ec7231f.js></script><script type=text/javascript src=bundle.a54f85743fc81920f57d.js></script></body><script></script></html>

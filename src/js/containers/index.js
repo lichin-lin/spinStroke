@@ -5,6 +5,7 @@ import App from './App'
 import Base from './Base'
 import DevTools from './DevTools'
 import Iframe from './Iframe'
+// import Inctu from './Inctu'
 import stroke from './stroke'
 export default {
     intro,
@@ -14,5 +15,6 @@ export default {
     Base,
     DevTools,
     Iframe,
+    // Inctu,
     stroke
 }

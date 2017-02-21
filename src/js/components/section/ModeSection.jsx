@@ -6,6 +6,22 @@ import 'react-input-range/lib/css/index.css'
 import {Creatable} from 'react-select'
 import 'react-select/dist/react-select.css'
 
+// http://davidwalsh.name/javascript-debounce-function
+function debounce (func, wait, immediate) {
+    var timeout
+    return function () {
+        var context = this
+        var args = arguments
+        var later = function () {
+            timeout = null
+            if (!immediate) func.apply(context, args)
+        }
+        var callNow = immediate && !timeout
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+        if (callNow) func.apply(context, args)
+    }
+}
 export default CSSModules(class ModeSection extends Component {
     constructor (props) {
         super(props)
@@ -15,9 +31,13 @@ export default CSSModules(class ModeSection extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleChangeInput = this.handleChangeInput.bind(this)
         this.handleChangeFontSize = this.handleChangeFontSize.bind(this)
+        this.handleChangeFontSizeToProps = debounce(this.handleChangeFontSizeToProps.bind(this), 1000)
         this.handleChangeLineWidth = this.handleChangeLineWidth.bind(this)
+        this.handleChangeLineWidthToProps = debounce(this.handleChangeLineWidthToProps.bind(this), 1000)
         this.handleChangeSpeed = this.handleChangeSpeed.bind(this)
+        this.handleChangeSpeedToProps = debounce(this.handleChangeSpeedToProps.bind(this), 1000)
         this.handleChangeRate = this.handleChangeRate.bind(this)
+        this.handleChangeRateToProps = debounce(this.handleChangeRateToProps.bind(this), 1000)
         this.updatePropsToState = this.updatePropsToState.bind(this)
         this.state = {
             text: '',
@@ -48,21 +68,36 @@ export default CSSModules(class ModeSection extends Component {
         this.setState({multiValue: val})
         this.props.setStrokeProps({texts: val.map((text) => (text.label))})
     }
+
     handleChangeFontSize (val) {
         this.setState({FontSize: val})
+        this.handleChangeFontSizeToProps(val)
+    }
+    handleChangeFontSizeToProps (val) {
         this.props.setStrokeProps({fontSize: val})
     }
+
     handleChangeSpeed (val) {
         this.setState({AnimationSpeed: val})
+        this.handleChangeSpeedToProps(val)
+    }
+    handleChangeSpeedToProps (val) {
         this.props.setStrokeProps({speed: val})
     }
+
     handleChangeRate (val) {
         this.setState({ChangeRate: val})
+        this.handleChangeRateToProps(val)
+    }
+    handleChangeRateToProps (val) {
         this.props.setStrokeProps({during: val})
     }
+
     handleChangeLineWidth (val) {
-        console.log(val)
         this.setState({lineWidth: val})
+        this.handleChangeLineWidthToProps(val)
+    }
+    handleChangeLineWidthToProps (val) {
         this.props.setStrokeProps({lineWidth: val})
     }
 
@@ -110,7 +145,16 @@ export default CSSModules(class ModeSection extends Component {
     render () {
         return (
             <section id="Mode" className="main special">
-                <ul className="actions">
+                <ul className="actions slideControll">
+                    <li>
+                        <p>Animation url:</p>
+                        <input type="text" value={this.state.iframeURL} />
+                        <p style={{
+                            fontSize: '0.85em',
+                            fontStyle: 'italic',
+                            color: '#AAA'
+                        }}>* copy & use wherever you like</p>
+                    </li>
                 </ul>
                 <ul className="actions slideControll">
                     <li>
@@ -162,15 +206,6 @@ export default CSSModules(class ModeSection extends Component {
                           step={0.5}
                           value={this.state.AnimationSpeed}
                           onChange={this.handleChangeSpeed} />
-                    </li>
-                </ul>
-                {/* <ul className="actions">
-                    <li onClick={this.handleSubmit}><a className="button special">update</a></li>
-                </ul> */}
-                <ul className="actions slideControll">
-                    <li>
-                        <p>Animation url:</p>
-                        <input type="text" value={this.state.iframeURL} />
                     </li>
                 </ul>
 

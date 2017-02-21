@@ -7,6 +7,7 @@ import CSSModules from 'react-css-modules'
 // } from 'react-bootstrap'
 
 export default CSSModules(class Base extends Component {
+// export default class Base extends Component {
     render () {
         return (
             <div className="spinStroke">
@@ -31,4 +32,5 @@ export default CSSModules(class Base extends Component {
             </div>
         )
     }
+// }
 }, require('./../../sass/main.scss'))
